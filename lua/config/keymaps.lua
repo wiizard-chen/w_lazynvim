@@ -6,6 +6,8 @@ local Util = require("lazyvim.util")
 
 local map = require("utils.init").map
 
+require('config.enhanceKeymaps')
+
 -- make insert mode like emacs
 -- if you don't like emacs comment all key bind
 -- solve the confict with karabiner
@@ -48,13 +50,12 @@ map("n", "<C-u>", "<C-u>zz")
 
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
--- 非常重要的 keymap
-map("n", "s", "")
+
 -- from the primeagen
 map("n", "Q", "<nop>")
 
 
--- buffer 跳转
+-- buffer 跳转，绑定 cmd + number 通过 ala
 map('n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>');
 map('n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>');
 map('n', '<leader>3', '<Cmd>BufferLineGoToBuffer 3<CR>');
