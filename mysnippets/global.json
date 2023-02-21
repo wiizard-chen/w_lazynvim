@@ -1,0 +1,39 @@
+{
+  "wstate": {
+    "prefix": "wstate",
+    "body": [
+      "const [${CLIPBOARD}, set${CLIPBOARD/(.)/${1:/upcase}/}] = useState($2);"
+    ],
+    "description": "state"
+  },
+  "wlog": {
+    "prefix": "wlog",
+    "body": [
+      "console.debug('---test--- ${CLIPBOARD}', ${CLIPBOARD});"
+    ],
+    "description": "wlog"
+  },
+  "wdoasync": {
+    "prefix": "doasync",
+    "body": [
+      "const [${CLIPBOARD}, do${CLIPBOARD/(.)/${1:/upcase}/}] = useAsyncFn(async () => { ",
+      " return undefined",
+      "},[], undefined);"
+    ],
+    "description": "doasync"
+  },
+  "wtmp": {
+    "prefix": "wtmp",
+    "body": [
+      "const tmp = "
+    ],
+    "description": "doasync"
+  },
+  "wres": {
+    "prefix": "wres",
+    "body": [
+      "const res = "
+    ],
+    "description": "doasync"
+  }
+}
