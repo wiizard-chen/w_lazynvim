@@ -10,13 +10,20 @@ local M = {}
 
 function M.sleep(n) -- seconds
   local t0 = clock()
-  while clock() - t0 <= n do end
+  while clock() - t0 <= n do
+  end
 end
 
-function M.map(m, k, v, optional)
-  -- 可选参数
-  local _opt = optional or opt
-  vim.keymap.set(m, k, v, _opt)
+function M.map(mode, lhs, rhs, opts)
+  local keys = require("lazy.core.handler").handlers.keys
+  ---@cast keys LazyKeysHandler
+  -- do not create the keymap if a lazy keys handler exists
+  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+    opts = opts or {}
+    opts.silent = opts.silent ~= false
+    opts.noremap = true
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
 end
 
 function M.get_capabilities()
