@@ -1,9 +1,5 @@
-local function start_telescope(telescope_mode)
-  local node = require("nvim-tree.lib").get_node_at_cursor()
-  local abspath = node.link_to or node.absolute_path
-  local is_folder = node.open ~= nil
+local function start_telescope(telescope_mode, abspath, is_folder)
   local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
-
   if telescope_mode == "grep_string" then
     print("live_grep", basedir)
     require("telescope.builtin").grep_string({
@@ -22,15 +18,20 @@ local function start_telescope(telescope_mode)
   end
 end
 
-local function telescope_find_files(_)
-  start_telescope("find_files")
+local function telescope_find_files(abspath, is_folder)
+  start_telescope("find_files", abspath, is_folder)
 end
 
-local function telescope_grep_string(_)
-  start_telescope("grep_string")
+local function telescope_grep_string(abspath, is_folder)
+  start_telescope("grep_string", abspath, is_folder)
 end
 
 return {
+  {
+    "rcarriga/nvim-notify",
+    enabled = false,
+  },
+
   -- file explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -76,17 +77,22 @@ return {
           ["g;f"] = {
             function(state)
               local node = state.tree:get_node()
-              print(node.name)
+              local path = node.path
+              local nodeType = node.type
+              if nodeType == "directory" then
+                telescope_find_files(path, true)
+              end
             end,
             nowait = true,
           },
           ["g;r"] = {
             function(state)
               local node = state.tree:get_node()
-              -- print(node.name, node.path)
               local path = node.path
-              -- print(node)
-              print(path)
+              local nodeType = node.type
+              if nodeType == "directory" then
+                telescope_grep_string(path, true)
+              end
             end,
             nowait = true,
           },
