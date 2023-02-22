@@ -3,7 +3,6 @@ return {
     "akinsho/bufferline.nvim",
     enabled = false,
   },
-
   {
     "romgrk/barbar.nvim",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
