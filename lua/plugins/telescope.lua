@@ -66,10 +66,10 @@ return {
         },
         {
           ";f",
-          -- function()
-          -- builtin.git_files({ no_ignore = false, hidden = true })
-          -- end,
-          Util.telescope("files"),
+          function()
+            builtin.git_files({ no_ignore = false, hidden = true })
+          end,
+          -- Util.telescope("files"),
           desc = "find files",
         },
         {

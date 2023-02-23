@@ -6,7 +6,7 @@ local Util = require("lazyvim.util")
 
 local map = require("utils.init").map
 
-require('config.enhanceKeymaps')
+require("config.enhanceKeymaps")
 
 -- make insert mode like emacs
 -- if you don't like emacs comment all key bind
@@ -15,19 +15,18 @@ require('config.enhanceKeymaps')
 -- c-e go to tail
 map("i", "<C-A>", "<Esc>I", { desc = "插入模式下，到行首" })
 map("i", "<C-E>", "<Esc>A", { desc = "插入模式下，到行尾" })
-map("n", "<C-A>", "0", { desc = "插入模式下，到行首" })
+map("n", "<C-A>", "^", { desc = "插入模式下，到行首" })
 map("n", "<C-E>", "$", { desc = "插入模式下，到行尾" })
 map("i", "<C-d>", "<Del>", { desc = "插入模式，向前删除" })
 map("i", "<C-h>", "<BS>", { desc = "插入模式，向后删除" })
 -- map("i", "<C-u>", '<space><Esc>"_d0xi')
 map("i", "<C-k>", '<space><Esc>"_d$a', { desc = "插入模式，向后删除" })
 
-map('n', 'x', '"_x')
-map('n', 'X', '"_X')
-map('n', 'c', '"_c')
+map("n", "x", '"_x')
+map("n", "X", '"_X')
+map("n", "c", '"_c')
 -- 在visual mode 里粘贴不要复制
 map("v", "p", '"_dP')
-
 
 -- $跳到行尾不带空格 (交换$ 和 g_)
 map("v", "$", "g_")
@@ -54,19 +53,17 @@ map("n", "N", "Nzzzv")
 -- from the primeagen
 map("n", "Q", "<nop>")
 
-
 -- buffer 跳转，绑定 cmd + number 通过 ala
 
-map('n', '<leader>1', '<Cmd>BufferGoto 1<CR>');
-map('n', '<leader>2', '<Cmd>BufferGoto 2<CR>');
-map('n', '<leader>3', '<Cmd>BufferGoto 3<CR>');
-map('n', '<leader>4', '<Cmd>BufferGoto 4<CR>');
-map('n', '<leader>5', '<Cmd>BufferGoto 5<CR>');
-map('n', '<leader>6', '<Cmd>BufferGoto 6<CR>');
-map('n', '<leader>7', '<Cmd>BufferGoto 7<CR>');
-map('n', '<leader>8', '<Cmd>BufferGoto 8<CR>');
-map('n', '<leader>9', '<Cmd>BufferGoto 9<CR>');
-
+map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")
+map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>")
+map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>")
+map("n", "<leader>4", "<Cmd>BufferGoto 4<CR>")
+map("n", "<leader>5", "<Cmd>BufferGoto 5<CR>")
+map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>")
+map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>")
+map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>")
+map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>")
 
 -- map('n', '<leader>1', '<Cmd>BufferLineGoToBuffer 1<CR>');
 -- map('n', '<leader>2', '<Cmd>BufferLineGoToBuffer 2<CR>');
