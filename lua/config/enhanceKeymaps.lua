@@ -5,6 +5,9 @@ local vimcmd = vim.cmd
 -- 方便常用的快捷键
 map("n", ",r", ":nohl<CR> :edit<CR>", { desc = "refresh" })
 
+map("n", "gw", "*zz")
+map("x", "gw", "*N")
+
 -- 非常重要的 keymap, 关于屏幕分屏的
 map("n", "s", "")
 map("n", "ss", ":split<Return>", { desc = "横向分屏" })

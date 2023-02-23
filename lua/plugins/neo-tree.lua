@@ -1,3 +1,5 @@
+local Util = require("lazyvim.util")
+
 local function start_telescope(telescope_mode, abspath, is_folder)
   local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
   if telescope_mode == "grep_string" then
@@ -74,6 +76,19 @@ return {
       window = {
         mappings = {
           ["<space>"] = "none",
+          ["gy"] = {
+            function(state)
+              local node = state.tree:get_node()
+              -- print(vim.inspect(node))
+              local filePath = node._id
+              local rootPath = Util.get_root()
+              local relativePath = filePath:gsub(rootPath, "")
+              -- print(relativePath)
+              vim.fn.setreg("+", relativePath)
+              vim.fn.setreg('"', relativePath)
+            end,
+            nowait = true,
+          },
           ["g;f"] = {
             function(state)
               local node = state.tree:get_node()
