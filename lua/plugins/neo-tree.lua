@@ -32,6 +32,16 @@ return {
   {
     "rcarriga/nvim-notify",
     -- enabled = false,
+    opts = {
+      background_colour = "#ffffff",
+      timeout = 3000,
+      max_height = function()
+        return math.floor(vim.o.lines * 0.75)
+      end,
+      max_width = function()
+        return math.floor(vim.o.columns * 0.75)
+      end,
+    },
   },
 
   -- file explorer
@@ -83,9 +93,11 @@ return {
               local filePath = node._id
               local rootPath = Util.get_root()
               local relativePath = filePath:gsub(rootPath, "")
-              -- print(relativePath)
+              print(rootPath)
+              print(relativePath)
               vim.fn.setreg("+", relativePath)
               vim.fn.setreg('"', relativePath)
+              vim.fn.setreg("*", relativePath)
             end,
             nowait = true,
           },
