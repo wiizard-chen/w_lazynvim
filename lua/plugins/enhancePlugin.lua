@@ -69,7 +69,6 @@ return {
       require("toggleterm").setup(opts)
       local term = require("utils.terminal")
       local map = require("utils.init").map
-      local Util = require("lazyvim.util")
       map("n", ";lg", term.lazygit_toggle, { desc = "toggle lazygit" })
     end,
   },
