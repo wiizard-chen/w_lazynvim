@@ -33,7 +33,7 @@ local function get_relative_path(state)
   local node = state.tree:get_node()
   local replace = myUtil.replace
   local file_path = node._id
-  local root_path = Util.get_root()
+  local root_path = Util.get_root() .. "/"
   -- local relativePath = filePath:gsub(rootPath, "")
   local relative_path = replace(file_path, root_path, "")
   print(root_path)
