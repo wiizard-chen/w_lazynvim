@@ -1,4 +1,4 @@
-local pickers = require('utils.telescopePickers')
+local pickers = require("utils.telescopePickers")
 
 local opt = {
   noremap = true,
@@ -30,7 +30,7 @@ function M.get_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
-    lineFoldingOnly = true
+    lineFoldingOnly = true,
   }
   local res = require("cmp_nvim_lsp").default_capabilities(capabilities)
   return res
@@ -38,14 +38,23 @@ end
 
 function M.smart_quit()
   -- save all file
-  vimcmd('wa!')
+  vimcmd("wa!")
   -- M.sleep(1)
-  vimcmd('qa!')
+  vimcmd("qa!")
 end
 
 function M.get_reg(char)
   return vim.fn.getreg(char)
   -- return vim.api.nvim_exec([[echo getreg(']]..char..[[')]], true):gsub("[\n\r]", "^J")
+end
+
+local function regexEscape(str)
+  return str:gsub("[%(%)%.%%%+%-%*%?%[%^%$%]]", "%%%1")
+end
+
+-- https://gist.github.com/VADemon/afb10dbb0d10d99aeb21449752da6285
+function M.replace(str, this, that)
+  return str:gsub(regexEscape(this), that) -- only % needs to be escaped for 'that'
 end
 
 M.grep_in_staged = pickers.grep_in_staged

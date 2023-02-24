@@ -1,4 +1,5 @@
 local Util = require("lazyvim.util")
+local myUtil = require("utils.init")
 
 local function start_telescope(telescope_mode, abspath, is_folder)
   local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
@@ -26,6 +27,31 @@ end
 
 local function telescope_grep_string(abspath, is_folder)
   start_telescope("grep_string", abspath, is_folder)
+end
+
+local function get_relative_path(state)
+  local node = state.tree:get_node()
+  local replace = myUtil.replace
+  local file_path = node._id
+  local root_path = Util.get_root()
+  -- local relativePath = filePath:gsub(rootPath, "")
+  local relative_path = replace(file_path, root_path, "")
+  print(root_path)
+  print("**************")
+  print(file_path)
+  print("**************")
+  print(relative_path)
+  vim.fn.setreg("+", relative_path)
+  vim.fn.setreg('"', relative_path)
+  vim.fn.setreg("*", relative_path)
+end
+
+local function get_absolute_path(state)
+  local node = state.tree:get_node()
+  local absoulte_path = node._id
+  vim.fn.setreg("+", absoulte_path)
+  vim.fn.setreg('"', absoulte_path)
+  vim.fn.setreg("*", absoulte_path)
 end
 
 return {
@@ -82,47 +108,34 @@ return {
       filesystem = {
         bind_to_cwd = false,
         follow_current_file = true,
+        commands = {
+          get_absolute_path = get_absolute_path,
+          get_relative_path = get_relative_path,
+          search_file_with_path = function(state)
+            local node = state.tree:get_node()
+            local path = node.path
+            local nodeType = node.type
+            if nodeType == "directory" then
+              telescope_find_files(path, true)
+            end
+          end,
+          grep_string_with_path = function(state)
+            local node = state.tree:get_node()
+            local path = node.path
+            local nodeType = node.type
+            if nodeType == "directory" then
+              telescope_grep_string(path, true)
+            end
+          end,
+        },
       },
       window = {
         mappings = {
           ["<space>"] = "none",
-          ["gy"] = {
-            function(state)
-              local node = state.tree:get_node()
-              -- print(vim.inspect(node))
-              local filePath = node._id
-              local rootPath = Util.get_root()
-              local relativePath = filePath:gsub(rootPath, "")
-              print(rootPath)
-              print(relativePath)
-              vim.fn.setreg("+", relativePath)
-              vim.fn.setreg('"', relativePath)
-              vim.fn.setreg("*", relativePath)
-            end,
-            nowait = true,
-          },
-          ["g;f"] = {
-            function(state)
-              local node = state.tree:get_node()
-              local path = node.path
-              local nodeType = node.type
-              if nodeType == "directory" then
-                telescope_find_files(path, true)
-              end
-            end,
-            nowait = true,
-          },
-          ["g;r"] = {
-            function(state)
-              local node = state.tree:get_node()
-              local path = node.path
-              local nodeType = node.type
-              if nodeType == "directory" then
-                telescope_grep_string(path, true)
-              end
-            end,
-            nowait = true,
-          },
+          ["gY"] = "get_absolute_path",
+          ["gy"] = "get_relative_path",
+          ["g;f"] = "search_file_with_path",
+          ["g;r"] = "grep_string_with_path",
         },
       },
     },
