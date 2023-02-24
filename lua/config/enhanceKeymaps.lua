@@ -44,9 +44,10 @@ map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages"
 -- lazygit 功能加强
 -- ;lg 配合 alacritty 可以无缝打开 lazygit
 -- F5 配合 lazygit 打开被选中的文件
-map("n", ";lg", function()
-  Util.float_term({ "lazygit" }, { cwd = Util.get_root() })
-end, { desc = "Lazygit (root dir)" })
-map("t", ";lg", "<c-\\><c-n><cmd>quit<CR>", { desc = "close" })
+-- map("n", ";lg", function()
+--   Util.float_term({ "lazygit" }, { cwd = Util.get_root() })
+-- end, { desc = "Lazygit (root dir)" })
+
+-- map("t", ";lg", "<c-\\><c-n><cmd>quit<CR>", { desc = "close" })
 -- 先复制路径，退出 lazygit，最后打开文件
-map("t", "<F5>", "<c-o><c-\\><c-n><cmd>quit<cr>:edit <c-r>*<CR>", { desc = "open git file" })
+-- map("t", "<F5>", "<c-o><c-\\><c-n><cmd>quit<cr>:edit <c-r>*<CR>", { desc = "open git file" })
