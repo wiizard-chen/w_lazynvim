@@ -37,6 +37,8 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 # Customize KeyMaps
 
+> \<leader\> = \<space\>
+
 ### Basic
 https://www.lazyvim.org/
 
@@ -67,9 +69,9 @@ https://www.lazyvim.org/
 | buffer | sn         | next window                     | n    |
 | buffer | sp         | previous window                 | n    |
 | buffer | sw         | switch float window             | n    |
-| buffer | <leader>so | close other buffers but pinned  | n    |
-| buffer | <leader>sO | close other buffers but current | n    |
-| buffer | <leader>sp | pin current window              | n    |
+| buffer | \<leader\>so | close other buffers but pinned  | n    |
+| buffer | sO | close other buffers but current | n    |
+| buffer | sp | pin current window              | n    |
 | leap     | ;s      | leap-forward-to        | n    |
 | leap     | ;S      | leap-backward-to       | n    |
  
@@ -77,8 +79,8 @@ https://www.lazyvim.org/
 ### Tab
 | plugin | keymaps        | desc                        | mode |
 | ------ | -------------- | --------------------------- | ---- |
-| tab    | <leader><tab>n | new tab with current buffer | n    |
-| tab    | <leader><tab>o | close other tab             | n    |
+| tab    | <tab>n | new tab with current buffer | n    |
+| tab    | <tab>o | close other tab             | n    |
 
 ### Terminal
 | plugin   | keymaps | desc                   | mode |
@@ -99,22 +101,21 @@ https://www.lazyvim.org/
 ### Zen-mode
 | plugin   | keymaps    | desc     | mode |
 | -------- | ---------- | -------- | ---- |
-| zen-mode | <leader>zz | zen mode | n    |
+| zen-mode | zz | zen mode | n    |
 
 ### Private Keymap
 | plugin              | keymaps    | desc                                                      | mode |
 | ------------------- | ---------- | --------------------------------------------------------- | ---- |
-| other               | <leader>fs | save all file and format                                  | n    |
+| other               | \<leader\>fs | save all file and format                                  | n    |
 | typescript          | gO         | remove unused var and sort imports (typescript exclusive) | n    |
 | telescope           | ;r         | find git files                                            | n    |
 | telescope           | ;f         | search all file (without regex)                           | n    |
 | telescope           | ;e         | telescope resume                                          | n    |
-| telescope           | <leader>ss | grep git staged file                                      | n    |
+| telescope           | \<leader\>ss | grep git staged file                                      | n    |
 | treesitter          | \<CR\>      | init_selection                                            | n,v  |
 | treesitter          | \<BS\>       | node_decremental                                          | n,v  |
-| git | <leader>gl | open current file history | n   |
-| --- | ---------- | ------------------------- | --- |
-| git | <leader>go | open current file history | n   |
+| git | \<leader\>gl | open current file history | n   |
+| git | \<leader\>go | open current file history | n   |
 | typescript snippets | wlog       | quickly log from clipboard content                        | i    |
 
 

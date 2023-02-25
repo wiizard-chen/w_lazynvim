@@ -33,9 +33,13 @@ map("n", "<leader><tab>n", function()
 end, { desc = "new tab with current buffer" })
 map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
 
--- buffer 的关闭以及全部保存
-
--- lazyvim 的 <leader>bd 能执行同样的操作
--- map("n", "<leader>w", "<cmd>BufferDelete<CR>", { desc = "close buffer" })
+-- 个人爱好快捷键
 map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
 map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
+-- map("n", "gO", function()
+--   vimcmd("TypescriptRemoveUnused")
+--   vimcmd("sleep 100m")
+--   vimcmd("TypescriptOrganizeImports")
+--   vimcmd("sleep 100m")
+--   vimcmd("wa")
+-- end, { desc = "remove unused var and sort imports (typescript exclusive)" })
