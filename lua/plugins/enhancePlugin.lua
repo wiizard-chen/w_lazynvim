@@ -13,6 +13,15 @@ return {
           fallback = true, -- fall back to standard LSP definition on failure
         },
       })
+      local map = require("utils.init").map
+      local vimcmd = vim.cmd
+      map("n", "gO", function()
+        vimcmd("TypescriptRemoveUnused")
+        vimcmd("sleep 100m")
+        vimcmd("TypescriptOrganizeImports")
+        vimcmd("sleep 100m")
+        vimcmd("wa")
+      end, { desc = "remove unused var and sort imports (typescript exclusive)" })
     end,
   },
 
