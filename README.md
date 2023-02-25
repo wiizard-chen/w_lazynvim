@@ -117,5 +117,7 @@ https://www.lazyvim.org/
 | git | \<leader\>gl | open current file history | n   |
 | git | \<leader\>go | open current file history | n   |
 | typescript snippets | wlog       | quickly log from clipboard content                        | i    |
+| lsp                 | c-j        | next diagnostic error|n|
+| lsp                 | c-k        | previous diagnostic error|n|
 
 
