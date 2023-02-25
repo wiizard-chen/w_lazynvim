@@ -19,6 +19,8 @@ map("n", "sc", "<C-w>c", { desc = "Close window" })
 map("n", "so", "<C-w>o", { desc = "Close other window" })
 map("n", "sn", "<cmd>BufferNext<CR>", { desc = "next window" })
 map("n", "sp", "<cmd>BufferPrevious<CR>", { desc = "pre window" })
+map("n", "sw", "<c-w><c-w>", { desc = "switch float window" })
+
 map("n", "<leader>so", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "close other buffers but pinned" })
 map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close other buffers but current" })
 map("n", "<leader>sp", "<cmd>BufferPin<CR>", { desc = "pin tab" })

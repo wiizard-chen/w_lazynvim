@@ -65,6 +65,49 @@ return {
         end,
         desc = "jump prev error",
       },
+
+      {
+        "]d",
+        function()
+          require("lspsaga.diagnostic"):goto_prev()
+        end,
+        desc = "Next Diagnostic",
+      },
+      {
+        "[d",
+        function()
+          require("lspsaga.diagnostic"):goto_next()
+        end,
+        desc = "Prev Diagnostic",
+      },
+      {
+        "]e",
+        function()
+          require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        end,
+        desc = "Next Error",
+      },
+      {
+        "[e",
+        function()
+          require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end,
+        desc = "Prev Error",
+      },
+      {
+        "]w",
+        function()
+          require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.WARN })
+        end,
+        desc = "Next Warning",
+      },
+      {
+        "[w",
+        function()
+          require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.WARN })
+        end,
+        desc = "Prev Warning",
+      },
     },
     dependencies = {
       { "nvim-tree/nvim-web-devicons" },
