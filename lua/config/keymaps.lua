@@ -13,14 +13,13 @@ require("config.enhanceKeymaps")
 -- solve the confict with karabiner
 -- c-a go to head
 -- c-e go to tail
-map("i", "<C-A>", "<Esc>I", { desc = "插入模式下，到行首" })
-map("i", "<C-E>", "<Esc>A", { desc = "插入模式下，到行尾" })
-map("n", "<C-A>", "^", { desc = "插入模式下，到行首" })
-map("n", "<C-E>", "$", { desc = "插入模式下，到行尾" })
-map("i", "<C-d>", "<Del>", { desc = "插入模式，向前删除" })
-map("i", "<C-h>", "<BS>", { desc = "插入模式，向后删除" })
--- map("i", "<C-u>", '<space><Esc>"_d0xi')
-map("i", "<C-k>", '<space><Esc>"_d$a', { desc = "插入模式，向后删除" })
+map("i", "<C-A>", "<Esc>I", { desc = "jump to the start of line" })
+map("i", "<C-E>", "<Esc>A", { desc = "jump to the end of line" })
+map("n", "<C-A>", "^", { desc = "jump to the start of line" })
+map("n", "<C-E>", "$", { desc = "jump to the end of line" })
+map("i", "<C-d>", "<Del>", { desc = "delete forward character" })
+map("i", "<C-h>", "<BS>", { desc = "delete backward character" })
+map("i", "<C-k>", '<space><Esc>"_d$a', { desc = "delete the forward of line" })
 
 map("n", "x", '"_x')
 map("n", "X", '"_X')
@@ -46,7 +45,6 @@ map("v", "K", ":move '<-2<CR>gv-gv")
 -- map("n", "J", "mzJ`z")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
-
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
@@ -54,7 +52,6 @@ map("n", "N", "Nzzzv")
 map("n", "Q", "<nop>")
 
 -- buffer 跳转，绑定 cmd + number 通过 ala
-
 map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")
 map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>")
 map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>")

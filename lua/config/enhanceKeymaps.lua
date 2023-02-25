@@ -1,5 +1,4 @@
 local map = require("utils.init").map
-local Util = require("lazyvim.util")
 local vimcmd = vim.cmd
 
 -- 方便常用的快捷键
@@ -9,29 +8,28 @@ map("x", "gw", "*zz")
 
 -- 非常重要的 keymap, 关于屏幕分屏的
 map("n", "s", "")
-map("n", "ss", ":split<Return>", { desc = "横向分屏" })
-map("n", "sv", ":vsplit<Return>", { desc = "横向分屏" })
-map("n", "sh", "<C-w>h", { desc = "切换上平" })
-map("n", "sj", "<C-w>j", { desc = "横向分屏" })
-map("n", "sk", "<C-w>k", { desc = "横向分屏" })
-map("n", "sl", "<C-w>l", { desc = "横向分屏" })
-map("n", "s=", "<C-w>=", { desc = "横向分屏" })
-map("n", "sc", "<C-w>c", { desc = "横向分屏" })
-map("n", "so", "<C-w>o", { desc = "横向分屏" })
-map("n", "sq", "<C-w>q", { desc = "横向分屏" })
-map("n", "sn", "<C-w>=", { desc = "横向分屏" })
-map("n", "sp", "<C-w><C-w>", { desc = "横向分屏" })
-map("n", "<leader>so", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "close other but pinned" })
-map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close other but current" })
+map("n", "ss", ":split<Return>", { desc = "Horizontal split screen" })
+map("n", "sv", ":vsplit<Return>", { desc = "Vertical split screen" })
+map("n", "sh", "<C-w>h", { desc = "Go to left window" })
+map("n", "sj", "<C-w>j", { desc = "Go to lower window" })
+map("n", "sk", "<C-w>k", { desc = "Go to upper window" })
+map("n", "sl", "<C-w>l", { desc = "Go to right window" })
+map("n", "s=", "<C-w>=", { desc = "Resize each window" })
+map("n", "sc", "<C-w>c", { desc = "Close window" })
+map("n", "so", "<C-w>o", { desc = "Close other window" })
+map("n", "sn", "<cmd>BufferNext<CR>", { desc = "next window" })
+map("n", "sp", "<cmd>BufferPrevious<CR>", { desc = "pre window" })
+map("n", "<leader>so", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "close other buffers but pinned" })
+map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close other buffers but current" })
 map("n", "<leader>sp", "<cmd>BufferPin<CR>", { desc = "pin tab" })
 
--- tab 的操作，关闭其他，关闭单个
-map("n", "<leader><TAB>n", function()
+-- tab 的操作增强
+map("n", "<leader><tab>n", function()
   local cursor = vim.fn.line(".")
   vimcmd("tabnew %")
   vimcmd(tostring(cursor))
 end, { desc = "new tab with current buffer" })
-map("<leader><TAB>o", ":tabonly<CR>", { desc = "close other tab" })
+map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
 
 -- buffer 的关闭以及全部保存
 

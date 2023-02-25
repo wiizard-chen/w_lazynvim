@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("utils.init")
 local Util = require("lazyvim.util")
 
 return {
@@ -78,6 +78,7 @@ return {
             builtin.grep_string({
               use_regex = false,
               grep_open_files = false,
+              ---@diagnostic disable-next-line: param-type-mismatch
               search = vim.fn.input("Grep > "),
             })
           end,
@@ -90,14 +91,14 @@ return {
           end,
           desc = "telescope resume",
         },
-
         {
-          ";s",
+          "<leader>ss",
           function()
             utils.grep_in_staged({
               use_regex = false,
-              grep_open_files = false,
-              search = vim.fn.input("Grep > "),
+              -- grep_open_files = false,
+              ---@diagnostic disable-next-line: param-type-mismatch
+              -- search = vim.fn.input("Grep > "),
             })
           end,
           desc = "grep git staged file",
@@ -130,32 +131,4 @@ return {
       },
     },
   },
-
-  -- {
-  --   "nvim-telescope/telescope.nvim",
-  --   cmd = "Telescope",
-  --   keys = function()
-  --     local builtin = require("telescope.builtin")
-  --     return {
-  --       { ";f", function() builtin.git_files({ no_ignore = false, hidden = true }) end, desc = "Command History" },
-  --       { ";r", function()
-  --         builtin.grep_string({
-  --           use_regex = false,
-  --           grep_open_files = false,
-  --           search = vim.fn.input("Grep > ")
-  --         })
-  --       end, desc = "searh all file" },
-  --       { ";e", function()
-  --         builtin.resume()
-  --       end, desc = "telescope resume" },
-  --       { ";e", function()
-  --         utils.grep_in_staged({
-  --           use_regex = false,
-  --           grep_open_files = false,
-  --           search = vim.fn.input("Grep > ")
-  --         })
-  --       end, desc = "grep git staged file" },
-  --     }
-  --   end
-  -- }
 }

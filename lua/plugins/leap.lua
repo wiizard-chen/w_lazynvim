@@ -3,16 +3,13 @@ return {
   {
     "ggandor/leap.nvim",
     event = "VeryLazy",
-    dependencies = { { "ggandor/flit.nvim", opts = { labeled_modes = "nv" }, enabled = false } },
-    -- enabled = false,
+    dependencies = { { "ggandor/flit.nvim", opts = { labeled_modes = "nv" }, enabled = true } },
     config = function(_, opts)
-      -- local leap = require("leap")
-      -- for k, v in pairs(opts) do
-      --   print("k is", k)
-      --   print("v is", v)
-      --   leap.opts[k] = v
-      -- end
-      -- leap.add_default_mappings(false)
+      local leap = require("leap")
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      -- leap.add_default_mappings(true)
     end,
     opts = {
       safe_labels = {
@@ -65,8 +62,8 @@ return {
       },
     },
     keys = {
-      { ",s", "<Plug>(leap-forward-to)" },
-      { ",S", "<Plug>(leap-backward-to)" },
+      { ";s", "<Plug>(leap-forward-to)" },
+      { ";S", "<Plug>(leap-backward-to)" },
     },
   },
 }

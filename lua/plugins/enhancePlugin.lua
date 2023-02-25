@@ -5,6 +5,15 @@ return {
 
   {
     "jose-elias-alvarez/typescript.nvim",
+    config = function()
+      require("typescript").setup({
+        disable_commands = false, -- prevent the plugin from creating Vim commands
+        debug = false, -- enable debug logging for commands
+        go_to_source_definition = {
+          fallback = true, -- fall back to standard LSP definition on failure
+        },
+      })
+    end,
   },
 
   {
@@ -14,7 +23,6 @@ return {
       { "mason.nvim" },
     },
     event = "BufReadPre",
-    -- dependencies = { "mason.nvim" },
     opts = function()
       local nls = require("null-ls")
       local tsnls = require("typescript.extensions.null-ls.code-actions")
@@ -33,18 +41,6 @@ return {
     "sindrets/diffview.nvim",
     dependencies = { { "nvim-lua/plenary.nvim" } },
     keys = {
-      --       l = {
-      --   ':DiffviewFileHistory %<CR>',
-      --   'file commit history',
-      -- },
-      -- c = {
-      --   ':DiffviewClose<CR>',
-      --   'file commit close',
-      -- },
-      -- o = {
-      --   ':DiffviewOpen<CR>',
-      --   'project commit history',
-      -- },
       { "<leader>gl", ":DiffviewFileHistory %<CR>", desc = "open current file history" },
       { "<leader>go", ":DiffviewOpen<CR>", desc = "open current file history" },
     },
