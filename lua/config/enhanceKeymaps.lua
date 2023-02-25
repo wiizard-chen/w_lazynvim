@@ -26,13 +26,12 @@ map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close othe
 map("n", "<leader>sp", "<cmd>BufferPin<CR>", { desc = "pin tab" })
 
 -- tab 的操作，关闭其他，关闭单个
-map("n", "tc", ":tabclose<CR>", { desc = "close tab" })
-map("n", "to", ":tabonly<CR>", { desc = "close other tab" })
-map("n", "tn", function()
+map("n", "<leader><TAB>n", function()
   local cursor = vim.fn.line(".")
   vimcmd("tabnew %")
   vimcmd(tostring(cursor))
-end, { desc = "new tab" })
+end, { desc = "new tab with current buffer" })
+map("<leader><TAB>o", ":tabonly<CR>", { desc = "close other tab" })
 
 -- buffer 的关闭以及全部保存
 
