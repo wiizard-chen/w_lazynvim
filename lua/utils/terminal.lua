@@ -10,11 +10,13 @@ function _lazygit_toggle()
     -- size = 20,
     float_opts = {
       border = "none",
-      winblend = 0,
-      highlights = {
-        border = "Normal",
-        background = "Normal",
-      },
+      width = 1000,
+      height = 400,
+      -- winblend = 0,
+      -- highlights = {
+      --   border = "Normal",
+      --   background = "Normal",
+      -- },
     },
     on_open = function(_)
       vimcmd("startinsert!")

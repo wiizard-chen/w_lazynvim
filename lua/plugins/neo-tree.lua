@@ -69,18 +69,27 @@ return {
       end,
     },
   },
+  {
+    "s1n7ax/nvim-window-picker",
+    config = function()
+      require("window-picker").setup()
+    end,
+  },
 
   -- file explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
+    dependencies = { { "s1n7ax/nvim-window-picker" } },
     cmd = "Neotree",
     keys = {
       {
         "<leader>fe",
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
+          -- require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
+          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
         end,
-        desc = "Explorer NeoTree (root dir)",
+        -- desc = "Explorer NeoTree (root dir)",
+        desc = "Explorer NeoTree (cwd)",
       },
       {
         "<leader>fE",
@@ -130,12 +139,36 @@ return {
         },
       },
       window = {
+        --         { key = "a", action = "create" },
+        -- { key = "d", action = "remove" },
+        -- { key = "r", action = "rename" },
+        -- { key = "x", action = "cut" },
+        -- { key = "c", action = "copy" },
+        -- { key = "p", action = "paste" },
+        -- { key = "y", action = "copy_name" },
+        -- { key = "Y", action = "copy_path" },
+        -- { key = "gy", action = "copy_absolute_path" },
+        -- { key = "I", action = "toggle_file_info" },
+        -- { key = "n", action = "tabnew" },
+        -- { key = { "l", "o" }, action = "edit", mode = "n" },
+        -- { key = "<CR>", action = "system_open" },
+        -- { key = "h", action = "close_node" },
+        -- { key = "v", action = "vsplit" },
+        -- { key = "C", action = "cd" },
+        -- { key = "g;f", action = "telescope_find_files", action_cb = telescope_find_files },
+        -- { key = "g;r", action = "telescope_grep_string", action_cb = telescope_grep_string },
+
         mappings = {
           ["<space>"] = "none",
           ["gY"] = "get_absolute_path",
           ["gy"] = "get_relative_path",
           ["g;f"] = "search_file_with_path",
           ["g;r"] = "grep_string_with_path",
+          ["o"] = "open",
+          ["l"] = "open",
+          ["s"] = "",
+          ["v"] = "open_vsplit",
+          ["h"] = "close_node",
         },
       },
     },
