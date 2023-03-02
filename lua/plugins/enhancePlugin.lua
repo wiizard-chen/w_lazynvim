@@ -1,5 +1,25 @@
 return {
   {
+    "cbochs/grapple.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    enabled = false,
+    config = function()
+      require("grapple").setup({})
+      -- local map = require("utils.init")
+      -- map("n", "<leader>mm", require("grapple").toggle, { desc = "toogle grapple" })
+    end,
+    keys = {
+      {
+        "<leader>m",
+        function()
+          require("grapple").toggle()
+        end,
+        "grapple toggle",
+      },
+    },
+  },
+
+  {
     "ThePrimeagen/harpoon",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
@@ -76,6 +96,7 @@ return {
           -- nls.builtins.formatting.prettierd,
           nls.builtins.formatting.stylua,
           nls.builtins.diagnostics.flake8,
+          nls.builtins.diagnostics.misspell,
           tsnls,
         },
       }
