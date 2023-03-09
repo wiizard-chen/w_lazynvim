@@ -29,6 +29,7 @@ return {
         "typescript",
         "vim",
         "yaml",
+        "kdl",
       },
       incremental_selection = {
         enable = true,

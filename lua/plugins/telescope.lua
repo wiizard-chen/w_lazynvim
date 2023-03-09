@@ -96,9 +96,9 @@ return {
           function()
             utils.grep_in_staged({
               use_regex = false,
-              -- grep_open_files = false,
+              grep_open_files = false,
               ---@diagnostic disable-next-line: param-type-mismatch
-              -- search = vim.fn.input("Grep > "),
+              search = vim.fn.input("Grep > "),
             })
           end,
           desc = "grep git staged file",
