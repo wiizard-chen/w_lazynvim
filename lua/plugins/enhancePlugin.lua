@@ -57,11 +57,9 @@ return {
       },
     },
   },
-
   {
     "windwp/nvim-ts-autotag",
   },
-
   {
     "jose-elias-alvarez/typescript.nvim",
     config = function()
@@ -114,7 +112,6 @@ return {
       { "<leader>go", ":DiffviewOpen<CR>", desc = "open current file history" },
     },
   },
-
   {
     "akinsho/toggleterm.nvim",
     name = "toggleterm",
@@ -151,5 +148,13 @@ return {
       local map = require("utils.init").map
       map("n", ";lg", term.lazygit_toggle, { desc = "toggle lazygit" })
     end,
+  },
+  {
+    "windwp/nvim-spectre",
+    -- stylua: ignore
+    keys = {
+      -- { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+      { "<leader>sr", ":Spectre %<CR>", desc = "Replace in Current file"},
+    },
   },
 }

@@ -38,6 +38,7 @@ map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
 map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
 map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
 map("n", "<leader>gf", ":Prettier<CR>", { desc = "Prettier file" })
+-- map("n", "<leader>sf", ":Spectre %<CR>", { desc = "Replace current file" })
 
 -- map("n", "gO", function()
 --   vimcmd("TypescriptRemoveUnused")
