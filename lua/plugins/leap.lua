@@ -12,8 +12,8 @@ return {
       -- leap.add_default_mappings(true)
     end,
     keys = {
-      { ";s", "<Plug>(leap-forward-to)" },
-      { ";S", "<Plug>(leap-backward-to)" },
+      { ",s", "<Plug>(leap-forward-to)" },
+      { ",S", "<Plug>(leap-backward-to)" },
     },
   },
 }

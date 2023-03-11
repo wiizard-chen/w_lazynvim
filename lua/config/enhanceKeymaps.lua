@@ -1,4 +1,5 @@
 local map = require("utils.init").map
+
 local vimcmd = vim.cmd
 
 -- 方便常用的快捷键
