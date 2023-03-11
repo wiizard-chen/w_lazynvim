@@ -93,7 +93,7 @@ return {
     event = "BufReadPre",
     opts = function()
       local nls = require("null-ls")
-      local tsnls = require("typescript.extensions.null-ls.code-actions")
+      -- local tsnls = require("typescript.extensions.null-ls.code-actions")
       return {
         sources = {
           -- nls.builtins.formatting.prettierd,
