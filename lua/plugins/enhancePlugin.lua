@@ -117,7 +117,7 @@ return {
     name = "toggleterm",
     version = "*",
     opts = {
-      open_mapping = [[<c-\>]],
+      -- open_mapping = [[<c-\>]],
       hide_numbers = true,
       shade_filetypes = {},
       shade_terminals = true,
