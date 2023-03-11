@@ -36,6 +36,8 @@ map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
 -- 个人爱好快捷键
 map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
 map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
+map("n", "<leader>gf", ":Prettier<CR>", { desc = "show messages" })
+
 -- map("n", "gO", function()
 --   vimcmd("TypescriptRemoveUnused")
 --   vimcmd("sleep 100m")

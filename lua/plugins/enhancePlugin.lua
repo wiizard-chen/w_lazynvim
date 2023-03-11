@@ -1,5 +1,8 @@
 return {
   {
+    "MunifTanjim/prettier.nvim",
+  },
+  {
     "cbochs/grapple.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     enabled = false,
@@ -93,7 +96,7 @@ return {
       local tsnls = require("typescript.extensions.null-ls.code-actions")
       return {
         sources = {
-          nls.builtins.formatting.prettierd,
+          -- nls.builtins.formatting.prettierd,
           nls.builtins.formatting.stylua,
           nls.builtins.diagnostics.flake8,
           nls.builtins.diagnostics.misspell,
