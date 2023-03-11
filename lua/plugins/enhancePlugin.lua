@@ -35,12 +35,12 @@ return {
           print("add marks")
           require("harpoon.mark").add_file()
         end,
-        "add harpoon mark",
+        desc = "add harpoon mark",
       },
       {
         ";h",
         ":Telescope harpoon marks<cr>",
-        "find harpoon marks",
+        desc = "find harpoon marks",
       },
       {
         "<leader>ha",
@@ -48,12 +48,12 @@ return {
           print("add marks")
           require("harpoon.mark").add_file()
         end,
-        "add harpoon mark",
+        desc = "add harpoon mark",
       },
       {
         "<leader>hs",
         ":Telescope harpoon marks<cr>",
-        "find harpoon marks",
+        desc = "find harpoon marks",
       },
     },
   },
