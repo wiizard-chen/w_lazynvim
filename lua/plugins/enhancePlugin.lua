@@ -153,7 +153,17 @@ return {
     "windwp/nvim-spectre",
     -- stylua: ignore
     keys = {
-      -- { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+      -- { "<leader>sr",
+      --   function()
+      --   local root_path = require("lazyvim.util").get_root() .. "/"
+      --   local absolute_path = vim.api.nvim_buf_get_name(0)
+      --   require("spectre").open({
+      --   is_insert_mode = true,
+      --   cwd = root_path,
+      --   path= absolute_path,
+      -- })
+      -- end, desc = "Replace in files (Spectre)" },
+      -- { "<leader>sr", ":Spectre %<CR>", desc = "Replace in Current file"},
       { "<leader>sr", ":Spectre %<CR>", desc = "Replace in Current file"},
     },
   },

@@ -12,17 +12,11 @@ return {
         end, vim.api.nvim_tabpage_list_wins(0))
         require("leap").leap({ target_windows = focusable_windows_on_tabpage })
       end, { desc = "jump all windows" })
-
       local leap = require("leap")
       for k, v in pairs(opts) do
         leap.opts[k] = v
       end
       leap.add_default_mappings(true)
     end,
-    keys = {
-      -- { ",s", "<Plug>(leap-forward-to)" },
-      -- { ",s", "<Plug>(leap-from-window)" },
-      -- { ",S", "<Plug>(leap-backward-to)" },
-    },
   },
 }

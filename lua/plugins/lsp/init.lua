@@ -10,7 +10,6 @@ return {
       -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
       -- disable a keymap
       keys[#keys + 1] = { "<c-k>", false, mode = "i", desc = "Signature Help", has = "signatureHelp" }
-
       keys[#keys + 1] = { "]d", false, keysMap.diagnostic_goto(true), desc = "Next Diagnostic" }
       keys[#keys + 1] = { "[d", false, keysMap.diagnostic_goto(false), desc = "Prev Diagnostic" }
       keys[#keys + 1] = { "]e", false, keysMap.diagnostic_goto(true, "ERROR"), desc = "Next Error" }
