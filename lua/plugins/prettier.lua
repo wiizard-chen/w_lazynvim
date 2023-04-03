@@ -1,0 +1,5 @@
+return {
+  {
+    "MunifTanjim/prettier.nvim",
+  },
+}
