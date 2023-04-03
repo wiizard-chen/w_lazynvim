@@ -1,5 +1,0 @@
-return {
-  {
-    "MunifTanjim/prettier.nvim",
-  },
-}
