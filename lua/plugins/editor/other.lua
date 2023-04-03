@@ -1,9 +1,5 @@
 return {
   {
-    "MunifTanjim/prettier.nvim",
-    enabled = false,
-  },
-  {
     "windwp/nvim-ts-autotag",
   },
   {
