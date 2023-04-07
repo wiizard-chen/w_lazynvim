@@ -28,7 +28,7 @@ return {
     },
     keys = {
       { "<CR>", desc = "Increment selection" },
-      { "<bs>", desc = "Schrink selection",  mode = "x" },
+      { "<bs>", desc = "Schrink selection", mode = "x" },
     },
     ---@type TSConfig
     opts = {
