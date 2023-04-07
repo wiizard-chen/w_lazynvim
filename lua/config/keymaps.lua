@@ -4,7 +4,6 @@
 
 local map = require("utils.init").map
 
-require("config.enhanceKeymaps")
 
 -- make insert mode like emacs
 -- if you don't like emacs comment all key bind
@@ -65,3 +64,5 @@ map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>")
 map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>")
 map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>")
 map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>")
+
+require("config.custom_keymaps")

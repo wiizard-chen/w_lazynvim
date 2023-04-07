@@ -18,12 +18,10 @@ return {
         comment = "muted",
         link = "iris",
         punctuation = "subtle",
-
         error = "love",
         hint = "iris",
         info = "foam",
         warn = "gold",
-
         headings = {
           h1 = "iris",
           h2 = "foam",
@@ -35,7 +33,6 @@ return {
         -- or set all headings at once
         -- headings = 'subtle'
       },
-
       -- Change specific vim highlight groups
       highlight_groups = {
         ColorColumn = { bg = "rose" },

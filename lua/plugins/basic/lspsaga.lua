@@ -27,11 +27,11 @@ return {
       })
     end,
     keys = {
-      { "g.", "<Cmd>Lspsaga code_action<CR>", desc = "code action" },
-      { "gp", "<Cmd>Lspsaga lsp_finder<CR>", desc = "all code info" },
-      { "go", "<Cmd>Lspsaga outline<CR>", desc = "open outline" },
+      { "g.", "<Cmd>Lspsaga code_action<CR>",           desc = "code action" },
+      { "gp", "<Cmd>Lspsaga lsp_finder<CR>",            desc = "all code info" },
+      { "go", "<Cmd>Lspsaga outline<CR>",               desc = "open outline" },
       { "gl", "<Cmd>Lspsaga show_line_diagnostics<CR>", desc = "show line diagnostics" },
-      { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover" },
+      { "gh", "<cmd>Lspsaga hover_doc<CR>",             desc = "Hover" },
       {
         "<C-j>",
         function()
@@ -46,7 +46,6 @@ return {
         end,
         desc = "jump prev error",
       },
-
       {
         "]d",
         function()

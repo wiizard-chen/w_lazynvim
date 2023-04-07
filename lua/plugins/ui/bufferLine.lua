@@ -6,7 +6,7 @@ return {
   {
     "romgrk/barbar.nvim",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
-    -- event = "VeryLazy",
+    event = "VeryLazy",
     opts = {
       animation = false,
       icon_custom_colors = false,

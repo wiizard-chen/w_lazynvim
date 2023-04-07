@@ -7,7 +7,7 @@ local Path = require("plenary.path")
 local flatten = vim.tbl_flatten
 local filter = vim.tbl_filter
 
-local customPickers = {}
+local pickers = {}
 
 local opts_contain_invert = function(args)
   local invert = false
@@ -108,7 +108,7 @@ local tprint = function(tbl, indent)
   return toprint
 end
 
-customPickers.grep_in_staged = function(opts)
+pickers.grep_in_staged = function(opts)
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
   local word = vim.F.if_nil(opts.search, vim.fn.expand("<cword>"))
   local search = opts.use_regex and word or escape_chars(word)
@@ -138,13 +138,13 @@ customPickers.grep_in_staged = function(opts)
 
   opts.entry_maker = opts.entry_maker or make_entry.gen_from_vimgrep(opts)
   pickers
-    .new(opts, {
-      prompt_title = "git file grep",
-      finder = finders.new_oneshot_job(args, opts),
-      previewer = conf.grep_previewer(opts),
-      sorter = conf.generic_sorter(opts),
-    })
-    :find()
+      .new(opts, {
+        prompt_title = "git file grep",
+        finder = finders.new_oneshot_job(args, opts),
+        previewer = conf.grep_previewer(opts),
+        sorter = conf.generic_sorter(opts),
+      })
+      :find()
 end
 
-return customPickers
+return pickers

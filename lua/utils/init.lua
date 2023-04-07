@@ -1,5 +1,3 @@
-local pickers = require("utils.telescopePickers")
-
 local opt = {
   noremap = true,
   silent = true,
@@ -56,7 +54,5 @@ end
 function M.replace(str, this, that)
   return str:gsub(regexEscape(this), that) -- only % needs to be escaped for 'that'
 end
-
-M.grep_in_staged = pickers.grep_in_staged
 
 return M
