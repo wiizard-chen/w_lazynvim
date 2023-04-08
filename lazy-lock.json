@@ -49,6 +49,7 @@
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
   "promise-async": { "branch": "main", "commit": "7fa127fa80e7d4d447e0e2c78e99af4355f4247b" },
   "rose-pine": { "branch": "main", "commit": "f8e210df52a4f418eae3690eb744b06c13a6c556" },
+  "telescope-live-grep-args.nvim": { "branch": "master", "commit": "0f75ea809c46af8997c64f49c52e3c641d887885" },
   "telescope.nvim": { "branch": "master", "commit": "942fe5faef47b21241e970551eba407bc10d9547" },
   "todo-comments.nvim": { "branch": "main", "commit": "8febc60a76feefd8203077ef78b6a262ea1a41f9" },
   "toggleterm": { "branch": "main", "commit": "b86982429325112d2b20c6d0cc7a5c4b182ab705" },

@@ -1,23 +1,42 @@
-local Util = require("lazyvim.util")
-local myUtil = require("utils.init")
+local lazy_utils = require("lazyvim.util")
+local custom_utils = require("utils.init")
 
 local function start_telescope(telescope_mode, abspath, is_folder)
   local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
   if telescope_mode == "grep_string" then
-    print("live_grep", basedir)
-    require("telescope.builtin").grep_string({
+    local searchText = vim.fn.input("Grep > ")
+
+    if searchText == nil or searchText == "" then
+      return
+    end
+
+    local func = lazy_utils.telescope("grep_string", {
       cwd = basedir,
       use_regex = false,
-      grep_open_files = false,
-      search = vim.fn.input("Grep > "),
+      -- grep_open_files = false,
+      search = searchText,
     })
-    return
+    func()
+
+    -- require("telescope.builtin").grep_string({
+    --   cwd = basedir,
+    --   use_regex = false,
+    --   grep_open_files = false,
+    --   search = vim.fn.input("Grep > "),
+    -- })
+    -- return
   end
 
   if telescope_mode == "find_files" then
-    require("telescope.builtin")[telescope_mode]({
+    local func = lazy_utils.telescope("files", {
       cwd = basedir,
+      no_ignore = false,
+      hidden = true,
     })
+    func()
+    -- require("telescope.builtin")[telescope_mode]({
+    --   cwd = basedir,
+    -- })
   end
 end
 
@@ -31,9 +50,9 @@ end
 
 local function get_relative_path(state)
   local node = state.tree:get_node()
-  local replace = myUtil.replace
+  local replace = custom_utils.replace
   local file_path = node._id
-  local root_path = Util.get_root() .. "/"
+  local root_path = lazy_utils.get_root() .. "/"
   -- local relativePath = filePath:gsub(rootPath, "")
   local relative_path = replace(file_path, root_path, "")
   print(root_path)
@@ -139,7 +158,7 @@ return {
         },
       },
       window = {
-        --         { key = "a", action = "create" },
+        -- { key = "a", action = "create" },
         -- { key = "d", action = "remove" },
         -- { key = "r", action = "rename" },
         -- { key = "x", action = "cut" },

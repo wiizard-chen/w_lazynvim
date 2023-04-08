@@ -10,7 +10,7 @@ return {
         { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
         { "<leader>/", lazy_utils.telescope("live_grep", { use_regex = false }), desc = "Find in Files (Grep)" },
         { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-        { "<leader><space>", lazy_utils.telescope("files"), desc = "Find Files (root dir)" },
+        { "<leader><space>", lazy_utils.telescope("files", { cwd = false }), desc = "Find Files (root dir)" },
         -- find
         { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
         { "<leader>ff", lazy_utils.telescope("files"), desc = "Find Files (root dir)" },
@@ -28,6 +28,11 @@ return {
         { "<leader>sg", lazy_utils.telescope("live_grep"), desc = "Grep (root dir)" },
         { "<leader>sG", lazy_utils.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
         { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+        {
+          "<leader>sq",
+          lazy_utils.telescope("quickfix", { use_regex = false, grep_open_files = false }),
+          desc = "quickfix list",
+        },
         {
           "<leader>sH",
           "<cmd>Telescope highlights<cr>",
@@ -69,6 +74,23 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         mappings = {
+          n = {
+            ["<a-t>"] = function(...)
+              return require("trouble.providers.telescope").open_with_trouble(...)
+            end,
+            ["<a-i>"] = function()
+              lazy_utils.telescope("find_files", { no_ignore = true })()
+            end,
+            ["<a-h>"] = function()
+              lazy_utils.telescope("find_files", { hidden = true })()
+            end,
+            ["<C-Down>"] = function(...)
+              return require("telescope.actions").cycle_history_next(...)
+            end,
+            ["<C-Up>"] = function(...)
+              return require("telescope.actions").cycle_history_prev(...)
+            end,
+          },
           i = {
             ["<C-o>"] = require("telescope.actions.generate").which_key({
               name_width = 20, -- typically leads to smaller floats
@@ -78,45 +100,29 @@ return {
             }),
           },
         },
-        -- mappings = {
-        --   i = {
-        --
-        --     ["<c-t>"] = function(...)
-        --       return require("trouble.providers.telescope").open_with_trouble(...)
-        --     end,
-        --     ["<a-i>"] = function()
-        --       lazy_utils.telescope("find_files", { no_ignore = true })()
-        --     end,
-        --     ["<a-h>"] = function()
-        --       lazy_utils.telescope("find_files", { hidden = true })()
-        --     end,
-        --     ["<C-Down>"] = function(...)
-        --       return require("telescope.actions").cycle_history_next(...)
-        --     end,
-        --     ["<C-Up>"] = function(...)
-        --       return require("telescope.actions").cycle_history_prev(...)
-        --     end,
-        --   },
-        -- },
       },
     },
     config = function(_, opts)
       require("telescope").setup(opts)
-      local map = require("utils").map
+      local map = require("utils.init").map
 
       map("n", ";r", function()
+        local searchText = vim.fn.input("Grep > ")
+
+        if searchText == nil or searchText == "" then
+          return
+        end
+
         local func = lazy_utils.telescope("grep_string", {
           cwd = false,
           use_regex = false,
-          grep_open_files = false,
-          ---@diagnostic disable-next-line: param-type-mismatch
-          search = vim.fn.input("Grep > "),
+          -- grep_open_files = false,
+          search = searchText,
         })
         func()
       end, { desc = "searh all file" })
 
       map("n", ";f", function()
-        -- builtin.git_files({ no_ignore = false, hidden = true })
         local func = lazy_utils.telescope("files", { cwd = false, no_ignore = false, hidden = true })
         func()
       end, { desc = "find files" })
@@ -125,14 +131,6 @@ return {
         local func = lazy_utils.telescope("resume")
         func()
       end, { desc = "telescope resume" })
-
-      map("n", "<leader>sq", function()
-        local func = lazy_utils.telescope("quickfix", {
-          use_regex = false,
-          grep_open_files = false,
-        })
-        func()
-      end, { desc = "search quickfix list" })
 
       map("n", "<leader>\\s", function()
         local grep_in_staged = require("utils.telescope_pickers").grep_in_staged
