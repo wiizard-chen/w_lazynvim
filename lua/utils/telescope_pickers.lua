@@ -7,7 +7,7 @@ local Path = require("plenary.path")
 local flatten = vim.tbl_flatten
 local filter = vim.tbl_filter
 
-local pickers = {}
+-- local pickers = {}
 
 local opts_contain_invert = function(args)
   local invert = false
@@ -138,13 +138,13 @@ pickers.grep_in_staged = function(opts)
 
   opts.entry_maker = opts.entry_maker or make_entry.gen_from_vimgrep(opts)
   pickers
-      .new(opts, {
-        prompt_title = "git file grep",
-        finder = finders.new_oneshot_job(args, opts),
-        previewer = conf.grep_previewer(opts),
-        sorter = conf.generic_sorter(opts),
-      })
-      :find()
+    .new(opts, {
+      prompt_title = "git file grep",
+      finder = finders.new_oneshot_job(args, opts),
+      previewer = conf.grep_previewer(opts),
+      sorter = conf.generic_sorter(opts),
+    })
+    :find()
 end
 
 return pickers

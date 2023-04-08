@@ -8,7 +8,7 @@ return {
     keys = function()
       return {
         { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-        { "<leader>/", lazy_utils.telescope("live_grep"), desc = "Find in Files (Grep)" },
+        { "<leader>/", lazy_utils.telescope("live_grep", { use_regex = false }), desc = "Find in Files (Grep)" },
         { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
         { "<leader><space>", lazy_utils.telescope("files"), desc = "Find Files (root dir)" },
         -- find
@@ -102,27 +102,39 @@ return {
     },
     config = function(_, opts)
       require("telescope").setup(opts)
-      local builtin = require("telescope.builtin")
       local map = require("utils").map
 
       map("n", ";r", function()
-        builtin.grep_string({
+        local func = lazy_utils.telescope("grep_string", {
+          cwd = false,
           use_regex = false,
           grep_open_files = false,
           ---@diagnostic disable-next-line: param-type-mismatch
           search = vim.fn.input("Grep > "),
         })
+        func()
       end, { desc = "searh all file" })
 
       map("n", ";f", function()
-        builtin.git_files({ no_ignore = false, hidden = true })
+        -- builtin.git_files({ no_ignore = false, hidden = true })
+        local func = lazy_utils.telescope("files", { cwd = false, no_ignore = false, hidden = true })
+        func()
       end, { desc = "find files" })
 
       map("n", ";e", function()
-        builtin.resume()
+        local func = lazy_utils.telescope("resume")
+        func()
       end, { desc = "telescope resume" })
 
-      map("n", "<leader>ss", function()
+      map("n", "<leader>sq", function()
+        local func = lazy_utils.telescope("quickfix", {
+          use_regex = false,
+          grep_open_files = false,
+        })
+        func()
+      end, { desc = "search quickfix list" })
+
+      map("n", "<leader>\\s", function()
         local grep_in_staged = require("utils.telescope_pickers").grep_in_staged
         grep_in_staged({
           use_regex = false,
