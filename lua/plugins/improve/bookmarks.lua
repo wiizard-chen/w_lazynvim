@@ -6,8 +6,8 @@ return {
       -- require("telescope").load_extension("bookmarks")
       require("bookmarks").setup({
         keymap = {
-          toggle = "<tab><tab>", -- Toggle bookmarks
-          add = "\\z", -- Add bookmarks
+          toggle = "\\<tab>", -- Toggle bookmarks
+          add = "\\a", -- Add bookmarks
           -- jump = "\\b", -- Jump from bookmarks
           delete = "dd", -- Delete bookmarks
           -- order = "<space>o", -- Order bookmarks by frequency or updated_time
@@ -20,7 +20,6 @@ return {
         preview_ext_enable = false, -- If true, preview buf will add file ext, preview window may be highlighed(treesitter), but may be slower.
         fix_enable = false, -- If true, when saving the current file, if the bookmark line number of the current file changes, try to fix it.
         hl_cursorline = "guibg=Gray guifg=White", -- hl bookmarsk window cursorline.
-
         virt_text = "🔖", -- Show virt text at the end of bookmarked lines
         virt_pattern = { "*.go", "*.lua", "*.sh", "*.php", "*.rs" }, -- Show virt text only on matched pattern
       })

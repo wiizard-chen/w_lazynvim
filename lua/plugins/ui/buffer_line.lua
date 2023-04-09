@@ -18,6 +18,10 @@ return {
 
       exclude_name = { "package.json" },
 
+      sidebar_filetypes = {
+        -- ["neo-tree"] = { event = "BufWipeout", text = "neo-tree" },
+      },
+
       icons = {
         -- Configure the base icons on the bufferline.
         buffer_index = false,
