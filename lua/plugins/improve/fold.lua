@@ -1,6 +1,22 @@
 return {
   {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        relculright = true,
+        segments = {
+          { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+          { text = { "", builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+          { text = { "%s" }, click = "v:lua.ScSa" },
+        },
+      })
+    end,
+  },
+  {
     "kevinhwang91/nvim-ufo",
+    event = "BufReadPost",
+    enabled = true,
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "nvim-treesitter/nvim-treesitter" },
@@ -26,7 +42,7 @@ return {
     config = function()
       require("ufo").setup({
         open_fold_hl_timeout = 150,
-        -- close_fold_kinds = { "imports", "comment" },
+        close_fold_kinds = { "imports", "comment" },
         preview = {
           win_config = {
             border = { "", "─", "", "", "", "─", "", "" },
