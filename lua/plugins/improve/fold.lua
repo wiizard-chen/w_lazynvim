@@ -25,18 +25,18 @@ return {
     name = "ufo",
     keys = {
       {
-        "zR",
-        function()
-          require("ufo").openAllFolds()
-        end,
-        desc = "open all folds",
-      },
-      {
-        "zM",
+        "zm",
         function()
           require("ufo").closeAllFolds()
         end,
-        desc = "close all folds",
+        desc = "fold current file",
+      },
+      {
+        "zr",
+        function()
+          require("ufo").openAllFolds()
+        end,
+        desc = "unfold current file",
       },
     },
     config = function()
