@@ -179,6 +179,7 @@ return {
             ["s"] = "",
             ["v"] = "open_vsplit",
             ["h"] = "close_node",
+            ["H"] = "toggle_hidden",
             -- ["C"] = "close_all_node",
             ["z"] = "",
           },

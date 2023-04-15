@@ -8,7 +8,11 @@ return {
     keys = function()
       return {
         { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-        { "<leader>/", lazy_utils.telescope("live_grep", { use_regex = false }), desc = "Find in Files (Grep)" },
+        {
+          "<leader>/",
+          lazy_utils.telescope("grep_string", { use_regex = false, cwd = false }),
+          desc = "Find in Files (Grep)",
+        },
         { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
         { "<leader><space>", lazy_utils.telescope("files", { cwd = false }), desc = "Find Files (root dir)" },
         -- find
