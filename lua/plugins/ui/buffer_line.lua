@@ -6,6 +6,7 @@ return {
   {
     "romgrk/barbar.nvim",
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
+    enabled = true,
     event = "VeryLazy",
     opts = {
       -- Enables/disable clickable tabs
@@ -51,10 +52,10 @@ return {
     },
     config = function(_, opts)
       require("barbar").setup(opts)
-      local hl = require("bufferline.utils").hl
-      local fg_current = hl.fg_or_default({ "Normal" }, "#ff00ff", 255)
-      local bg_current = hl.bg_or_default({ "Normal" }, "none")
-      hl.set("BufferDefaultCurrent", bg_current, fg_current)
+      -- local hl = require("bufferline.utils").hl
+      -- local fg_current = hl.fg_or_default({ "Normal" }, "#ff00ff", 255)
+      -- local bg_current = hl.bg_or_default({ "Normal" }, "none")
+      -- hl.set("BufferDefaultCurrent", bg_current, fg_current)
     end,
   },
 }
