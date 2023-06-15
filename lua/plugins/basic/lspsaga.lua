@@ -2,6 +2,7 @@ return {
   {
     "glepnir/lspsaga.nvim",
     event = "BufRead",
+    -- enabled = false,
     config = function()
       require("lspsaga").setup({
         ui = {
@@ -13,9 +14,9 @@ return {
         lightbulb = {
           enable = false,
           enable_in_insert = true,
-          sign = true,
+          sign = false,
           sign_priority = 40,
-          virtual_text = true,
+          virtual_text = false,
         },
         finder = {
           --percentage
@@ -34,11 +35,11 @@ return {
       })
     end,
     keys = {
-      { "g.", "<Cmd>Lspsaga code_action<CR>", desc = "code action" },
-      { "gp", "<Cmd>Lspsaga lsp_finder<CR>", desc = "all code info" },
-      { "go", "<Cmd>Lspsaga outline<CR>", desc = "open outline" },
+      { "g.", "<Cmd>Lspsaga code_action<CR>",           desc = "code action" },
+      { "gp", "<Cmd>Lspsaga lsp_finder<CR>",            desc = "all code info" },
+      { "go", "<Cmd>Lspsaga outline<CR>",               desc = "open outline" },
       { "gl", "<Cmd>Lspsaga show_line_diagnostics<CR>", desc = "show line diagnostics" },
-      { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover" },
+      { "gh", "<cmd>Lspsaga hover_doc<CR>",             desc = "Hover" },
       {
         "<C-j>",
         function()
