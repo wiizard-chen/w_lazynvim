@@ -10,6 +10,13 @@ return {
         symbol_in_winbar = {
           enable = false,
         },
+        lightbulb = {
+          enable = false,
+          enable_in_insert = true,
+          sign = true,
+          sign_priority = 40,
+          virtual_text = true,
+        },
         finder = {
           --percentage
           max_height = 0.5,
@@ -27,11 +34,11 @@ return {
       })
     end,
     keys = {
-      { "g.", "<Cmd>Lspsaga code_action<CR>",           desc = "code action" },
-      { "gp", "<Cmd>Lspsaga lsp_finder<CR>",            desc = "all code info" },
-      { "go", "<Cmd>Lspsaga outline<CR>",               desc = "open outline" },
+      { "g.", "<Cmd>Lspsaga code_action<CR>", desc = "code action" },
+      { "gp", "<Cmd>Lspsaga lsp_finder<CR>", desc = "all code info" },
+      { "go", "<Cmd>Lspsaga outline<CR>", desc = "open outline" },
       { "gl", "<Cmd>Lspsaga show_line_diagnostics<CR>", desc = "show line diagnostics" },
-      { "gh", "<cmd>Lspsaga hover_doc<CR>",             desc = "Hover" },
+      { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover" },
       {
         "<C-j>",
         function()
