@@ -163,8 +163,8 @@ return {
         git_status = { commands = global_commands },
         -- diagnostics = { commands = global_commands },
         source_selector = {
-          winbar = true,
-          content_layout = "center",
+          winbar = false,
+          -- content_layout = "center",
           -- statusline = true,
         },
         window = {

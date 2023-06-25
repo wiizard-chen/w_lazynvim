@@ -4,7 +4,6 @@
 
 local map = require("utils.init").map
 
-
 -- make insert mode like emacs
 -- if you don't like emacs comment all key bind
 -- solve the confict with karabiner
@@ -23,6 +22,9 @@ map("n", "<C-j>", "", { desc = "" })
 map("n", "<C-k>", "", { desc = "" })
 map("n", "<C-l>", "", { desc = "" })
 map("t", "<esc><esc>", "<nop>", { desc = "nothing" })
+
+map("n", "<C-O>", "<C-O>zz", { desc = "back" })
+map("n", "<C-I>", "<C-I>zz", { desc = "reback" })
 
 map("n", "x", '"_x')
 map("n", "X", '"_X')
