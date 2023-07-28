@@ -14,8 +14,15 @@ if is_win then
 end
 
 -- hotfix: nvim 0.9 treesitter work error
+
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
 
--- vim.cmd([[set formatoptions-=cro]])
+-- clear formatoptions
+vim.cmd([[
+augroup MyAutoCommands
+  autocmd!
+  autocmd BufEnter * set formatoptions-=cro
+augroup END
+]])

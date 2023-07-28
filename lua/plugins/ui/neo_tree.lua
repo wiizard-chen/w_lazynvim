@@ -16,6 +16,7 @@ local function start_telescope(telescope_mode, abspath, is_folder)
       -- grep_open_files = false,
       search = searchText,
     })
+
     func()
 
     -- require("telescope.builtin").grep_string({
@@ -76,16 +77,9 @@ end
 return {
   {
     "rcarriga/nvim-notify",
-    enabled = false,
+    -- enabled = false,
     opts = {
       background_colour = "#ffffff",
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
     },
   },
   {
@@ -156,7 +150,7 @@ return {
       return {
         filesystem = {
           bind_to_cwd = false,
-          follow_current_file = true,
+          follow_current_file = { enabled = true },
           commands = global_commands,
         },
         buffers = { commands = global_commands },
@@ -179,8 +173,6 @@ return {
             ["s"] = "",
             ["v"] = "open_vsplit",
             ["h"] = "close_node",
-            ["H"] = "toggle_hidden",
-            -- ["C"] = "close_all_node",
             ["z"] = "",
           },
         },
