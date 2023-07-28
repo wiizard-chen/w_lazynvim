@@ -16,16 +16,21 @@ map("n", "<C-E>", "$", { desc = "jump to the end of line" })
 map("i", "<C-d>", "<Del>", { desc = "delete forward character" })
 map("i", "<C-h>", "<BS>", { desc = "delete backward character" })
 map("i", "<C-k>", '<space><Esc>"_d$a', { desc = "delete the forward of line" })
+map("v", "<C-A>", "^", { desc = "jump to the start of line" })
+map("v", "<C-E>", "$", { desc = "jump to the end of line" })
 
+-- clear key
 map("n", "<C-h>", "", { desc = "" })
 map("n", "<C-j>", "", { desc = "" })
 map("n", "<C-k>", "", { desc = "" })
 map("n", "<C-l>", "", { desc = "" })
 map("t", "<esc><esc>", "<nop>", { desc = "nothing" })
 
+-- enahcne key
 map("n", "<C-O>", "<C-O>zz", { desc = "back" })
 map("n", "<C-I>", "<C-I>zz", { desc = "reback" })
 
+-- better yank and paste
 map("n", "x", '"_x')
 map("n", "X", '"_X')
 map("n", "c", '"_c')

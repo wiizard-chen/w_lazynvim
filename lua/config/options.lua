@@ -15,7 +15,6 @@ vim.o.foldenable = true
 
 -- fillchars
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 
 -- vim.opt.formatoptions = "tcqj"

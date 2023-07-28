@@ -1,4 +1,5 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
+
 require("config.lazy")
 
 -- 判断当前系统类型
@@ -17,4 +18,4 @@ for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
 
-vim.cmd([[set formatoptions-=cro]])
+-- vim.cmd([[set formatoptions-=cro]])
