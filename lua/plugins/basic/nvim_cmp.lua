@@ -48,7 +48,7 @@ local function jumpable(dir)
       local n_next = node.next
       local next_pos = n_next and n_next.mark:pos_begin()
       local candidate = n_next ~= snippet and next_pos and (pos[1] < next_pos[1])
-          or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
+        or (pos[1] == next_pos[1] and pos[2] < next_pos[2])
 
       -- Past unmarked exit node, exit early
       if n_next == nil or n_next == snippet.next then
@@ -282,21 +282,21 @@ return {
     end,
   },
 
-  -- copilot
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-      copilot_node_command = "/usr/local/bin/node",
-    },
-  },
+  -- -- copilot
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   build = ":Copilot auth",
+  --   opts = {
+  --     suggestion = { enabled = false },
+  --     panel = { enabled = false },
+  --     filetypes = {
+  --       markdown = true,
+  --       help = true,
+  --     },
+  --     copilot_node_command = "/usr/local/bin/node",
+  --   },
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     enabled = false,
