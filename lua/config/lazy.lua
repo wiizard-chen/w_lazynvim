@@ -24,7 +24,8 @@ require("lazy").setup({
     { import = "plugins.lsp" },
     { import = "plugins.improve" },
     { import = "plugins.formatting.prettier" },
-    { import = "plugins.lang.solidity" },
+    { import = "plugins.formatting.codeium" },
+    { import = "plugins.extralang.solidity" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
