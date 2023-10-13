@@ -6,8 +6,10 @@ return {
       -- require("telescope").load_extension("bookmarks")
       require("bookmarks").setup({
         keymap = {
-          toggle = "\\<tab>", -- Toggle bookmarks
-          add = "\\a", -- Add bookmarks
+          toggle = ";<tab>", -- Toggle bookmarks
+          add = ";a", -- Add bookmarks
+          -- toggle = "\\<tab>", -- Toggle bookmarks
+          -- add = "\\a", -- Add bookmarks
           -- jump = "\\b", -- Jump from bookmarks
           delete = "dd", -- Delete bookmarks
           -- order = "<space>o", -- Order bookmarks by frequency or updated_time
