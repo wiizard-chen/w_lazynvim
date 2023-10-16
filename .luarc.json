@@ -1,5 +1,6 @@
 {
     "diagnostics.disable": [
-        "assign-type-mismatch"
+        "assign-type-mismatch",
+        "param-type-mismatch"
     ]
 }
