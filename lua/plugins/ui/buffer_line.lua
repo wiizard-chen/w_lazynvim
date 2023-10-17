@@ -17,7 +17,9 @@ return {
       -- Excludes buffers from the tabline
       -- exclude_ft = { "javascript" },
 
-      auto_hide = 1,
+      -- Automatically hide the 'tabline' when there are this many buffers left. Set
+      -- to any value less than `0` to disable.
+      -- auto_hide = 1,
 
       exclude_name = { "package.json" },
 
