@@ -18,6 +18,9 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "lazyvim.plugins.extras.dap.nlua" },
+    { import = "lazyvim.plugins.extras.coding.codeium" },
     -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
 
     -- import/override with your plugins
@@ -27,7 +30,7 @@ require("lazy").setup({
     { import = "plugins.improve" },
     -- { import = "plugins.formatting.prettier" },
     -- { import = "plugins.formatting.codeium" },
-    -- { import = "plugins.extralang.solidity" },
+    -- { import = "plugins.extralang.vue" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
