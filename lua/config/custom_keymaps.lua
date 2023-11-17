@@ -41,9 +41,9 @@ map("n", "<leader>gf", ":Prettier<CR>", { desc = "Prettier file" })
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 -- map("n", "<leader>sf", ":Spectre %<CR>", { desc = "Replace current file" })
 
-map("i", "<ESC>", "<ESC><leader>fs", { desc = "auto save" })
-map("n", "<ESC>", "<ESC><leader>fs", { desc = "auto save" })
-map("i", "<C-[>", "<ESC><leader>fs", { desc = "auto save" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
+map({ "i", "n" }, "<C-[", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
+
 -- map("n", "gO", function()
 --   vimcmd("TypescriptRemoveUnused")
 --   vimcmd("sleep 100m")
