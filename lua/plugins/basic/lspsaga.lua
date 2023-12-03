@@ -1,7 +1,7 @@
 return {
   {
     "glepnir/lspsaga.nvim",
-    -- enable = false,
+    enable = false,
     event = "BufRead",
     config = function()
       require("lspsaga").setup({
