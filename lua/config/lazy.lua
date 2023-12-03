@@ -28,6 +28,8 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.lsp" },
     { import = "plugins.improve" },
+    { import = "plugins.theme.rose" },
+    -- { import = "plugins.theme.tokyonight" },
     -- { import = "plugins.formatting.prettier" },
     -- { import = "plugins.formatting.codeium" },
     -- { import = "plugins.extralang.vue" },
@@ -41,7 +43,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  -- install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
