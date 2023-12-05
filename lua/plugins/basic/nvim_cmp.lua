@@ -107,10 +107,13 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local mapping = cmp.mapping.preset.insert({
+        -- local mapping = cmp.mapping.preset.insert({
+        -- ["<C-y>"] = cmp.mapping(function() end),
+        ["<C-y>"] = nil,
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         -- toggle completion
-        ["<C-l>"] = cmp.mapping(function(fallback)
+        ["<C-l>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.close()
           else

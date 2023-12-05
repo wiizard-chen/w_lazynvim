@@ -37,12 +37,10 @@ map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
 -- 个人爱好快捷键
 map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
 map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
-map("n", "<leader>gf", ":Prettier<CR>", { desc = "Prettier file" })
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
--- map("n", "<leader>sf", ":Spectre %<CR>", { desc = "Replace current file" })
+map("n", "<esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
 
 -- map("i", "<esc><esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
-map("n", "<esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
 -- map("i", "<C-[", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
 -- map("n", "<C-[", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
 
@@ -53,3 +51,9 @@ map("n", "<esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlse
 --   vimcmd("sleep 100m")
 --   vimcmd("wa")
 -- end, { desc = "remove unused var and sort imports (typescript exclusive)" })
+
+-- map("i", "<C-Y>", "<C-O>p", { desc = "paste from clipboard" })
+
+-- map("i", "<C-Y>", "<C-R>", { desc = "paste from clipboard" })
+map("i", "<C-Y>", "<C-R>=getreg('+')<CR>", { desc = "paste from clipboard" })
+-- map("i", "<C-Y>", "<c-r>=getreg('+')", { desc = "paste from clipboard" })

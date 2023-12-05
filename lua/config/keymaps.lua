@@ -9,8 +9,8 @@ local map = require("utils.init").map
 -- solve the confict with karabiner
 -- c-a go to head
 -- c-e go to tail
-map("i", "<C-A>", "<Esc>I", { desc = "jump to the start of line" })
-map("i", "<C-E>", "<Esc>A", { desc = "jump to the end of line" })
+map("i", "<C-A>", "<C-O>I", { desc = "jump to the start of line" })
+map("i", "<C-E>", "<C-O>A", { desc = "jump to the end of line" })
 map("n", "<C-A>", "^", { desc = "jump to the start of line" })
 map("n", "<C-E>", "$", { desc = "jump to the end of line" })
 map("i", "<C-d>", "<Del>", { desc = "delete forward character" })
