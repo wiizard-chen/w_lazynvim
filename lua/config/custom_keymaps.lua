@@ -1,6 +1,12 @@
 local map = require("utils.init").map
 
-local vimcmd = vim.cmd
+local function termcodes(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local function vimcmd(str)
+  return vim.api.nvim_command(str)
+end
 
 -- 方便常用的快捷键
 map("n", ",r", ":nohl<CR> :edit<CR>", { desc = "refresh" })
@@ -40,20 +46,15 @@ map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages"
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 map("n", "<esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
 
--- map("i", "<esc><esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
--- map("i", "<C-[", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
--- map("n", "<C-[", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
+local function delayed_function()
+  vim.fn.feedkeys("gi")
+  vim.fn.feedkeys(termcodes("<C-R>"))
+  vim.fn.feedkeys("*")
+end
 
--- map("n", "gO", function()
---   vimcmd("TypescriptRemoveUnused")
---   vimcmd("sleep 100m")
---   vimcmd("TypescriptOrganizeImports")
---   vimcmd("sleep 100m")
---   vimcmd("wa")
--- end, { desc = "remove unused var and sort imports (typescript exclusive)" })
-
--- map("i", "<C-Y>", "<C-O>p", { desc = "paste from clipboard" })
-
--- map("i", "<C-Y>", "<C-R>", { desc = "paste from clipboard" })
-map("i", "<C-Y>", "<C-R>=getreg('+')<CR>", { desc = "paste from clipboard" })
--- map("i", "<C-Y>", "<c-r>=getreg('+')", { desc = "paste from clipboard" })
+-- 最完美的粘贴
+map("i", "<C-Y>", function()
+  local code = termcodes("<ESC>")
+  vim.fn.feedkeys(code)
+  vim.defer_fn(delayed_function, 1)
+end, { desc = "paste from clipboard" })
