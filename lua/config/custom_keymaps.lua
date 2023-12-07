@@ -18,7 +18,25 @@ map("n", "sj", "<C-w>j", { desc = "Go to lower window" })
 map("n", "sk", "<C-w>k", { desc = "Go to upper window" })
 map("n", "sl", "<C-w>l", { desc = "Go to right window" })
 map("n", "s=", "<C-w>=", { desc = "Resize each window" })
-map("n", "sc", "<C-w>c", { desc = "Close window" })
+
+-- amazing sc
+map("n", "sc", function()
+  -- 获取当前标签页的所有窗口
+  local tabpage = vim.api.nvim_get_current_tabpage()
+  local windows = vim.fn.gettabinfo(tabpage)[1].windows
+
+  print("windows", #windows)
+  -- -- 判断窗口数量
+  if #windows == 1 then
+    vimcmd("bdelete")
+  else
+    local success = pcall(vim.api.nvim_exec, "close", true)
+    if not success then
+      vimcmd("bdelete")
+    end
+  end
+end, { desc = "Close window" })
+
 map("n", "so", "<C-w>o", { desc = "Close other window" })
 map("n", "sn", "<cmd>BufferNext<CR>", { desc = "next window" })
 map("n", "sp", "<cmd>BufferPrevious<CR>", { desc = "pre window" })
