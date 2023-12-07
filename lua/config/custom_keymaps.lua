@@ -40,7 +40,17 @@ map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
 map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
 map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
-map("n", "<esc>", "<cmd>noh<cr><esc><cmd>w<cr>", { desc = "Escape and clear hlsearch and auto save" })
+
+map("n", "<esc>", function()
+  vimcmd("noh")
+  -- 获取当前 buffer 的信息
+  local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+  local readonly = vim.api.nvim_buf_get_option(0, "readonly")
+  -- 判断是否可以保存
+  if buftype == "" and not readonly then
+    vimcmd("w")
+  end
+end, { desc = "Escape and clear hlsearch and auto save" })
 
 local function delayed_function()
   vim.fn.feedkeys("gi")

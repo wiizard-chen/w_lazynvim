@@ -20,8 +20,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.dap.nlua" },
-    -- { import = "lazyvim.plugins.extras.coding.codeium" },
-    -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
 
     -- import/override with your plugins
     { import = "plugins.basic" },
@@ -32,7 +30,7 @@ require("lazy").setup({
     -- { import = "plugins.theme.tokyonight" },
     -- { import = "plugins.formatting.prettier" },
     -- { import = "plugins.formatting.codeium" },
-    -- { import = "plugins.extralang.vue" },
+    { import = "plugins.extralang.flutter" },
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
