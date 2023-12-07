@@ -1,15 +1,11 @@
 local map = require("utils.init").map
+local termcodes = require("utils.init").termcodes
+local vimcmd = require("utils.init").vimcmd
 
-local function termcodes(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local function vimcmd(str)
-  return vim.api.nvim_command(str)
-end
+map("n", ";;", ";", { desc = "fix ;" })
+-- map("n", ",r", ":nohl<CR> :edit<CR>", { desc = "refresh" })
 
 -- 方便常用的快捷键
-map("n", ",r", ":nohl<CR> :edit<CR>", { desc = "refresh" })
 map("n", "gw", "*zz")
 map("x", "gw", "*zz")
 
@@ -58,3 +54,36 @@ map("i", "<C-Y>", function()
   vim.fn.feedkeys(code)
   vim.defer_fn(delayed_function, 1)
 end, { desc = "paste from clipboard" })
+
+-- 增强命令行的模式
+map("c", "<C-Y>", function()
+  vim.fn.feedkeys(termcodes("<C-R>"))
+  vim.fn.feedkeys("*")
+end, { desc = "paste from clipboard in cmd" })
+
+map("c", "<C-A>", function()
+  vim.fn.feedkeys(termcodes("<HOME>"))
+end, { desc = "paste from clipboard in cmd" })
+
+map("c", "<C-E>", function()
+  vim.fn.feedkeys(termcodes("<END>"))
+end, { desc = "paste from clipboard in cmd" })
+
+map("c", "<C-D>", function()
+  vim.fn.feedkeys(termcodes("<DEL>"))
+end, { desc = "paste from clipboard in cmd" })
+
+map("c", "<C-K>", function()
+  vim.fn.feedkeys(termcodes("<DEL>"))
+end, { desc = "paste from clipboard in cmd" })
+
+-- buffer 跳转，绑定 cmd + number 通过 ala
+map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")
+map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>")
+map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>")
+map("n", "<leader>4", "<Cmd>BufferGoto 4<CR>")
+map("n", "<leader>5", "<Cmd>BufferGoto 5<CR>")
+map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>")
+map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>")
+map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>")
+map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>")

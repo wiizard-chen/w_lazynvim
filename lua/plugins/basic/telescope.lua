@@ -1,4 +1,7 @@
 local lazy_utils = require("lazyvim.util")
+local function termcodes(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
 
 return {
   {
@@ -102,6 +105,12 @@ return {
               separator = " > ", -- change sep between mode, keybind, and name
               close_with_action = false, -- do not close float on action
             }),
+            ["<C-u>"] = function()
+              local code = termcodes("<ESC>")
+              vim.fn.feedkeys(code)
+              vim.fn.feedkeys("d0")
+              vim.fn.feedkeys("i")
+            end,
           },
         },
       },

@@ -154,6 +154,7 @@ return {
         end, { "i", "s" }),
       })
       opts.mapping = mapping
+
       return opts
     end,
   },

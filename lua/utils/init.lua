@@ -55,4 +55,12 @@ function M.replace(str, this, that)
   return str:gsub(regexEscape(this), that) -- only % needs to be escaped for 'that'
 end
 
+function M.termcodes(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+function M.vimcmd(str)
+  return vim.api.nvim_command(str)
+end
+
 return M
