@@ -25,7 +25,6 @@ map("n", "sc", function()
   local tabpage = vim.api.nvim_get_current_tabpage()
   local windows = vim.fn.gettabinfo(tabpage)[1].windows
 
-  print("windows", #windows)
   -- -- 判断窗口数量
   if #windows == 1 then
     vimcmd("bdelete")

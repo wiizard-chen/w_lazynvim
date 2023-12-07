@@ -2,6 +2,7 @@ local opt = {
   noremap = true,
   silent = true,
 }
+
 local vimcmd = vim.cmd
 local clock = os.clock
 local M = {}
