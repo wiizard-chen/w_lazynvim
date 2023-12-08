@@ -3,13 +3,11 @@ local termcodes = require("utils.init").termcodes
 local vimcmd = require("utils.init").vimcmd
 
 map("n", ";;", ";", { desc = "fix ;" })
--- map("n", ",r", ":nohl<CR> :edit<CR>", { desc = "refresh" })
-
 -- 方便常用的快捷键
 map("n", "gw", "*zz")
 map("x", "gw", "*zz")
 
--- 非常重要的 keymap, 关于屏幕分屏的
+-- extra important key about spliting screen
 map("n", "s", "")
 map("n", "ss", ":split<Return>", { desc = "Horizontal split screen" })
 map("n", "sv", ":vsplit<Return>", { desc = "Vertical split screen" })
@@ -18,14 +16,11 @@ map("n", "sj", "<C-w>j", { desc = "Go to lower window" })
 map("n", "sk", "<C-w>k", { desc = "Go to upper window" })
 map("n", "sl", "<C-w>l", { desc = "Go to right window" })
 map("n", "s=", "<C-w>=", { desc = "Resize each window" })
-
--- amazing sc
 map("n", "sc", function()
   -- 获取当前标签页的所有窗口
   local tabpage = vim.api.nvim_get_current_tabpage()
   local windows = vim.fn.gettabinfo(tabpage)[1].windows
-
-  -- -- 判断窗口数量
+  -- 判断窗口数量
   if #windows == 1 then
     vimcmd("bdelete")
   else
@@ -35,29 +30,26 @@ map("n", "sc", function()
     end
   end
 end, { desc = "Close window" })
-
 map("n", "so", "<C-w>o", { desc = "Close other window" })
-map("n", "sn", "<cmd>BufferNext<CR>", { desc = "next window" })
-map("n", "sp", "<cmd>BufferPrevious<CR>", { desc = "pre window" })
 map("n", "sw", "<c-w><c-w>", { desc = "switch float window" })
-
 map("n", "<leader>so", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "close other buffers but pinned" })
 map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close other buffers but current" })
 map("n", "<leader>sp", "<cmd>BufferPin<CR>", { desc = "pin tab" })
 
--- tab 的操作增强
-map("n", "<leader><tab>n", function()
+-- tabs extra keymap
+map("n", "sn", "<cmd>tabnext<cr>", { desc = "next window" })
+map("n", "sp", "<cmd>tabprevious<cr>", { desc = "pre window" })
+map("n", "<leader>sn", function()
   local cursor = vim.fn.line(".")
   vimcmd("tabnew %")
   vimcmd(tostring(cursor))
 end, { desc = "new tab with current buffer" })
-map("n", "<leader><tab>o", ":tabonly<CR>", { desc = "close other tab" })
-
--- 个人爱好快捷键
-map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
-map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
+map("n", "<leader>so", ":tabonly<CR>", { desc = "close other tab" })
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 
+-- custom liked keymap
+map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
+map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
 map("n", "<esc>", function()
   vimcmd("noh")
   -- 获取当前 buffer 的信息
@@ -74,7 +66,6 @@ local function delayed_function()
   vim.fn.feedkeys(termcodes("<C-R>"))
   vim.fn.feedkeys("*")
 end
-
 -- 最完美的粘贴
 map("i", "<C-Y>", function()
   local code = termcodes("<ESC>")
