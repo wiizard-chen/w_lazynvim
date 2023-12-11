@@ -19,7 +19,12 @@ map("n", "s=", "<C-w>=", { desc = "Resize each window" })
 map("n", "sc", function()
   -- 获取当前标签页的所有窗口
   local tabpage = vim.api.nvim_get_current_tabpage()
-  local windows = vim.fn.gettabinfo(tabpage)[1].windows
+
+  local tabs = vim.fn.gettabinfo(tabpage)
+  if #tabs < 1 then
+    return
+  end
+  local windows = tabs[1].windows
   -- 判断窗口数量
   if #windows == 1 then
     vimcmd("bdelete")
