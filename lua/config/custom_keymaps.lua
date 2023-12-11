@@ -62,7 +62,9 @@ map("n", "<esc>", function()
   local readonly = vim.api.nvim_buf_get_option(0, "readonly")
   -- 判断是否可以保存
   if buftype == "" and not readonly then
-    vimcmd("w")
+    if vim.bo.modified then
+      vimcmd("w")
+    end
   end
 end, { desc = "Escape and clear hlsearch and auto save" })
 
