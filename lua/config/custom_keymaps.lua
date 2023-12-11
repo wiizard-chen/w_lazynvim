@@ -33,7 +33,7 @@ end, { desc = "Close window" })
 map("n", "so", "<C-w>o", { desc = "Close other window" })
 map("n", "sw", "<c-w><c-w>", { desc = "switch float window" })
 map("n", "<leader>so", "<cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "close other buffers but pinned" })
-map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close other buffers but current" })
+-- map("n", "<leader>sO", "<cmd>BufferCloseAllButCurrent<CR>", { desc = "close other buffers but current" })
 map("n", "<leader>sp", "<cmd>BufferPin<CR>", { desc = "pin tab" })
 
 -- tabs extra keymap
@@ -44,7 +44,7 @@ map("n", "<leader>sn", function()
   vimcmd("tabnew %")
   vimcmd(tostring(cursor))
 end, { desc = "new tab with current buffer" })
-map("n", "<leader>so", ":tabonly<CR>", { desc = "close other tab" })
+map("n", "<leader>sO", ":tabonly<CR>", { desc = "close other tab" })
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 
 -- custom liked keymap
