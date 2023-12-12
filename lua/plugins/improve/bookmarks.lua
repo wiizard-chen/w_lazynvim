@@ -13,8 +13,8 @@ return {
           -- jump = "\\b", -- Jump from bookmarks
           delete = "dd", -- Delete bookmarks
           -- order = "<space>o", -- Order bookmarks by frequency or updated_time
-          delete_on_virt = "\\dd", -- Delete bookmark at virt text line
-          show_desc = "\\sd", -- show bookmark desc
+          delete_on_virt = "<localleader>dd", -- Delete bookmark at virt text line
+          show_desc = "<localleader>sd", -- show bookmark desc
         },
         width = 0.8, -- Bookmarks window width:  (0, 1]
         height = 0.6, -- Bookmarks window height: (0, 1]

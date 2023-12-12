@@ -63,8 +63,9 @@ map("n", "<esc>", function()
   -- 判断是否可以保存
   if buftype == "" and not readonly then
     if vim.bo.modified then
-      vimcmd("w")
-    end
+      local success = pcall(vim.api.nvim_exec, "w", true)
+      if not success then
+      end
   end
 end, { desc = "Escape and clear hlsearch and auto save" })
 
