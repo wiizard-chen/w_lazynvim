@@ -3,8 +3,8 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
-      dark_variant = "main",
-      -- dark_variant = 'moon',
+      -- dark_variant = "main",
+      dark_variant = "moon",
       bold_vert_split = false,
       dim_nc_background = false,
       disable_background = true,

@@ -25,13 +25,14 @@ map("n", "sc", function()
     return
   end
   local windows = tabs[1].windows
+  local delete_cmd = "BufferClose"
   -- 判断窗口数量
   if #windows == 1 then
-    vimcmd("bdelete")
+    vimcmd(delete_cmd)
   else
     local success = pcall(vim.api.nvim_exec, "close", true)
     if not success then
-      vimcmd("bdelete")
+      vimcmd(delete_cmd)
     end
   end
 end, { desc = "Close window" })
