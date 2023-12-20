@@ -26,7 +26,7 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.lsp" },
     { import = "plugins.improve" },
-    { import = "plugins.theme.rose" },
+    { import = "plugins.theme" },
     -- { import = "plugins.theme.tokyonight" },
     -- { import = "plugins.formatting.prettier" },
     -- { import = "plugins.formatting.codeium" },
@@ -41,8 +41,9 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  -- install = { colorscheme = { "tokyonight", "habamax" } },
+  -- colorscheme = "rose-pine",
   checker = { enabled = true }, -- automatically check for plugin updates
+
   performance = {
     rtp = {
       -- disable some rtp plugins
