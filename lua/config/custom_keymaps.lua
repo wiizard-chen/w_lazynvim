@@ -99,9 +99,9 @@ map("c", "<C-D>", function()
   vim.fn.feedkeys(termcodes("<DEL>"))
 end, { desc = "paste from clipboard in cmd" })
 
-map("c", "<C-K>", function()
-  vim.fn.feedkeys(termcodes("<DEL>"))
-end, { desc = "paste from clipboard in cmd" })
+-- map("c", "<C-K>", function()
+--   vim.fn.feedkeys(termcodes("<DEL>"))
+-- end, { desc = "paste from clipboard in cmd" })
 
 -- buffer 跳转，绑定 cmd + number 通过 ala
 map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")
