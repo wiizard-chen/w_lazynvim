@@ -1,6 +1,6 @@
 return {
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  { "rebelot/kanagawa.nvim", name = "kanagawa", priority = 1000 },
+  { "rebelot/kanagawa.nvim", name = "kanagawa" },
   {
     "folke/tokyonight.nvim",
     lazy = true,
@@ -13,9 +13,17 @@ return {
   },
 
   {
+    "2nthony/vitesse.nvim",
+    name = "vitesse",
+    dependencies = {
+      "tjdevries/colorbuddy.nvim",
+    },
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "rose-pine",
     },
   },
 }
