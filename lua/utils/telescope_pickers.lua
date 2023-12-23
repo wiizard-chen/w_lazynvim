@@ -111,8 +111,8 @@ end
 pickers.grep_in_staged = function(opts)
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
   local word = vim.F.if_nil(opts.search, vim.fn.expand("<cword>"))
-  local search = opts.use_regex and word or escape_chars(word)
-  search = { search }
+  local search_word = opts.use_regex and word or escape_chars(word)
+  local search = { search = search_word }
 
   local shellPath = vim.fn.stdpath("config") .. "/shell/gitstaged.sh"
 

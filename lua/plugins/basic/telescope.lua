@@ -116,8 +116,11 @@ return {
       },
     },
     config = function(_, opts)
-      require("telescope").setup(opts)
+      local telescope = require("telescope")
+      telescope.setup(opts)
       local map = require("utils.init").map
+
+      -- local mutli_rg = require("utils.telescope_pickers").mutli_rg
 
       map("n", ";r", function()
         local searchText = vim.fn.input("Grep > ")
@@ -133,7 +136,13 @@ return {
           search = searchText,
         })
         func()
+        -- mutli_rg()
       end, { desc = "searh all file" })
+
+      map("n", ";t", function()
+        local multi_reg = require("utils.multi_rg").multi_reg
+        multi_reg()
+      end)
 
       map("n", ";f", function()
         local func = lazy_utils.telescope("files", { cwd = false, no_ignore = false, hidden = true })
@@ -145,7 +154,7 @@ return {
         func()
       end, { desc = "telescope resume" })
 
-      map("n", "<leader>\\s", function()
+      map("n", ";g", function()
         local grep_in_staged = require("utils.telescope_pickers").grep_in_staged
         grep_in_staged({
           use_regex = false,
