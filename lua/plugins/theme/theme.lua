@@ -19,11 +19,28 @@ return {
       "tjdevries/colorbuddy.nvim",
     },
   },
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   opts = {
+  --     transparent = true,
+  --     -- style = "Darker",
+  --   },
+  -- },
+  {
+    "olimorris/onedarkpro.nvim",
+    opts = {
+      options = {
+        transparency = true,
+      },
+    },
+    priority = 1000, -- Ensure it loads first
+  },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine",
+      -- colorscheme = "rose-pine",
+      colorscheme = "onedark",
     },
   },
 }
