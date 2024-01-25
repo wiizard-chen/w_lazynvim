@@ -61,4 +61,6 @@ map("n", "N", "Nzzzv")
 -- from the primeagen
 map("n", "Q", "<nop>")
 
+map("n", "<leader>r", ":e<CR>zz")
+
 require("config.custom_keymaps")
