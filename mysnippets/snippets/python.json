@@ -1,0 +1,7 @@
+{
+  "wlog": {
+    "prefix": "wlog",
+    "body": ["print('---test--- ${CLIPBOARD}', ${CLIPBOARD})"],
+    "description": "wlog"
+  }
+}

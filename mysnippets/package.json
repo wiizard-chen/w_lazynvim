@@ -6,6 +6,10 @@
   "contributes": {
     "snippets": [
       {
+        "language": "python",
+        "path": "./snippets/python.json"
+      },
+      {
         "language": "all",
         "path": "./global.json"
       }

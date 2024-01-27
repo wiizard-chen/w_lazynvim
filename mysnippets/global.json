@@ -6,13 +6,6 @@
     ],
     "description": "state"
   },
-  "wlog": {
-    "prefix": "wlog",
-    "body": [
-      "console.debug('---test--- ${CLIPBOARD}', ${CLIPBOARD});"
-    ],
-    "description": "wlog"
-  },
   "wdoasync": {
     "prefix": "doasync",
     "body": [
@@ -24,16 +17,12 @@
   },
   "wtmp": {
     "prefix": "wtmp",
-    "body": [
-      "const tmp = "
-    ],
+    "body": ["const tmp = "],
     "description": "doasync"
   },
   "wres": {
     "prefix": "wres",
-    "body": [
-      "const res = "
-    ],
+    "body": ["const res = "],
     "description": "doasync"
   }
 }
