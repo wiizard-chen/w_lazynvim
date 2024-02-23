@@ -1,6 +1,17 @@
 local lazy_utils = require("lazyvim.util")
 local custom_utils = require("utils.init")
 
+local function splitString(inputStr, sep)
+  if sep == nil then
+    sep = "%s"
+  end
+  local t = {}
+  for str in string.gmatch(inputStr, "([^" .. sep .. "]+)") do
+    table.insert(t, str)
+  end
+  return t
+end
+
 local function start_telescope(telescope_mode, abspath, is_folder)
   local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
   if telescope_mode == "grep_string" then
@@ -74,6 +85,16 @@ local function get_absolute_path(state)
   vim.fn.setreg("*", absoulte_path)
 end
 
+local function copy_name(state)
+  local node = state.tree:get_node()
+  local path = node:get_id()
+  local result = splitString(path, "/")
+  local name = result[#result]
+  vim.fn.setreg("+", name)
+  vim.fn.setreg('"', name)
+  vim.fn.setreg("*", name)
+end
+
 return {
   {
     "rcarriga/nvim-notify",
@@ -92,7 +113,7 @@ return {
   -- file explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
-    dependencies = { { "s1n7ax/nvim-window-picker" } },
+    branch = "v3.x",
     cmd = "Neotree",
     keys = {
       {
@@ -129,6 +150,7 @@ return {
       local global_commands = {
         get_absolute_path = get_absolute_path,
         get_relative_path = get_relative_path,
+        copy_name = copy_name,
         search_file_with_path = function(state)
           local node = state.tree:get_node()
           local path = node.path
@@ -174,6 +196,7 @@ return {
             ["v"] = "open_vsplit",
             ["h"] = "close_node",
             ["z"] = "",
+            ["Y"] = "copy_name",
           },
         },
       }

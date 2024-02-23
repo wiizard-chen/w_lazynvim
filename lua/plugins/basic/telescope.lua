@@ -8,74 +8,6 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     version = false, -- telescope did only one release, so use HEAD for now
-    keys = function()
-      return {
-        { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-        {
-          "<leader>/",
-          lazy_utils.telescope("grep_string", { use_regex = false, cwd = false }),
-          desc = "Find in Files (Grep)",
-        },
-        { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-        { "<leader><space>", lazy_utils.telescope("files", { cwd = false }), desc = "Find Files (root dir)" },
-        -- find
-        { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-        { "<leader>ff", lazy_utils.telescope("files"), desc = "Find Files (root dir)" },
-        { "<leader>fF", lazy_utils.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-        { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-        -- git
-        { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
-        { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
-        -- search
-        { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-        { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-        { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-        { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-        { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-        { "<leader>sg", lazy_utils.telescope("live_grep"), desc = "Grep (root dir)" },
-        { "<leader>sG", lazy_utils.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-        { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-        {
-          "<leader>sq",
-          lazy_utils.telescope("quickfix", { use_regex = false, grep_open_files = false }),
-          desc = "quickfix list",
-        },
-        {
-          "<leader>sH",
-          "<cmd>Telescope highlights<cr>",
-          desc = "Search Highlight Groups",
-        },
-        { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-        { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-        { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
-        -- { "<leader>so",      "<cmd>Telescope vim_options<cr>",                         desc = "Options" },
-        { "<leader>sw", lazy_utils.telescope("grep_string"), desc = "Word (root dir)" },
-        { "<leader>sW", lazy_utils.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
-        {
-          "<leader>uC",
-          lazy_utils.telescope("colorscheme", { enable_preview = true }),
-          desc = "Colorscheme with preview",
-        },
-        {
-          "<leader>ss",
-          lazy_utils.telescope("lsp_document_symbols", {
-            symbols = {
-              "Class",
-              "Function",
-              "Method",
-              "Constructor",
-              "Interface",
-              "Module",
-              "Struct",
-              "Trait",
-              "Field",
-              "Property",
-            },
-          }),
-          desc = "Goto Symbol",
-        },
-      }
-    end,
     opts = {
       defaults = {
         prompt_prefix = " ",
@@ -120,8 +52,6 @@ return {
       telescope.setup(opts)
       local map = require("utils.init").map
 
-      -- local mutli_rg = require("utils.telescope_pickers").mutli_rg
-
       map("n", ";r", function()
         local searchText = vim.fn.input("Grep > ")
 
@@ -139,6 +69,7 @@ return {
         -- mutli_rg()
       end, { desc = "searh all file" })
 
+      -- 不知道干嘛的
       map("n", ";t", function()
         local multi_reg = require("utils.multi_rg").multi_reg
         multi_reg()
@@ -154,6 +85,7 @@ return {
         func()
       end, { desc = "telescope resume" })
 
+      -- 读取 git 文件的
       map("n", ";g", function()
         local grep_in_staged = require("utils.telescope_pickers").grep_in_staged
         grep_in_staged({

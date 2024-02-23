@@ -31,7 +31,7 @@ return {
     },
     config = function(_, opts)
       require("toggleterm").setup(opts)
-      local map = require("utils").map
+      local map = require("utils.init").map
       local lazygit_toggle = require("utils.terminal").lazygit_toggle
       map("n", ";lg", lazygit_toggle, { desc = "toggle lazygit" })
     end,

@@ -67,7 +67,6 @@ map("n", "<esc>", function()
       pcall(vim.api.nvim_exec, "w", true)
     end
   end
-  vim.fn.feedkeys("zz")
 end, { desc = "Escape and clear hlsearch and auto save" })
 
 local function delayed_function()
