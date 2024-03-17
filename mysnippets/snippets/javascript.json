@@ -1,0 +1,7 @@
+{
+  "wlog": {
+    "prefix": "wlog",
+    "body": ["console.debug('---test--- ${CLIPBOARD}', ${CLIPBOARD})"],
+    "description": "wlog"
+  }
+}
