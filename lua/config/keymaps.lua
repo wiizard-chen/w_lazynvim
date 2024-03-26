@@ -19,6 +19,9 @@ map("i", "<C-k>", '<space><Esc>"_d$a', { desc = "delete the forward of line" })
 map("v", "<C-A>", "^", { desc = "jump to the start of line" })
 map("v", "<C-E>", "$", { desc = "jump to the end of line" })
 
+-- something wrong happen
+-- map("0", "^", { desc = "jump to the start of line" })
+
 -- clear key
 map("n", "<C-h>", "", { desc = "" })
 map("n", "<C-j>", "", { desc = "" })
@@ -61,6 +64,6 @@ map("n", "N", "Nzzzv")
 -- from the primeagen
 map("n", "Q", "<nop>")
 
-map("n", "<leader>r", ":e<CR>zz")
+map("n", "<leader>r", ":LspRestart<CR>zz")
 
 require("config.custom_keymaps")
