@@ -8,45 +8,54 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     version = false, -- telescope did only one release, so use HEAD for now
-    opts = {
-      defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
-        mappings = {
-          n = {
-            ["<a-t>"] = function(...)
-              return require("trouble.providers.telescope").open_with_trouble(...)
-            end,
-            ["<a-i>"] = function()
-              lazy_utils.telescope("find_files", { no_ignore = true })()
-            end,
-            ["<a-h>"] = function()
-              lazy_utils.telescope("find_files", { hidden = true })()
-            end,
-            ["<C-Down>"] = function(...)
-              return require("telescope.actions").cycle_history_next(...)
-            end,
-            ["<C-Up>"] = function(...)
-              return require("telescope.actions").cycle_history_prev(...)
-            end,
-          },
-          i = {
-            ["<C-o>"] = require("telescope.actions.generate").which_key({
-              name_width = 20, -- typically leads to smaller floats
-              max_height = 0.5, -- increase potential maximum height
-              separator = " > ", -- change sep between mode, keybind, and name
-              close_with_action = false, -- do not close float on action
-            }),
-            ["<C-u>"] = function()
-              local code = termcodes("<ESC>")
-              vim.fn.feedkeys(code)
-              vim.fn.feedkeys("d0")
-              vim.fn.feedkeys("i")
-            end,
+    opts = function()
+      return {
+        defaults = {
+          prompt_prefix = " ",
+          selection_caret = " ",
+          mappings = {
+            n = {
+              ["<a-t>"] = function(...)
+                return require("trouble.providers.telescope").open_with_trouble(...)
+              end,
+              ["<a-i>"] = function()
+                lazy_utils.telescope("find_files", { no_ignore = true })()
+              end,
+              ["<a-h>"] = function()
+                lazy_utils.telescope("find_files", { hidden = true })()
+              end,
+              -- ["<C-d>"] = function(...)
+              --   return require("telescope.actions").cycle_history_next(...)
+              -- end,
+              -- ["<C-u>"] = function(...)
+              --   return require("telescope.actions").cycle_history_prev(...)
+              -- end,
+            },
+            i = {
+              ["<C-o>"] = require("telescope.actions.generate").which_key({
+                name_width = 20, -- typically leads to smaller floats
+                max_height = 0.5, -- increase potential maximum height
+                separator = " > ", -- change sep between mode, keybind, and name
+                close_with_action = false, -- do not close float on action
+              }),
+              ["<C-u>"] = function()
+                -- 删除全部输入
+                local code = termcodes("<ESC>")
+                vim.fn.feedkeys(code)
+                vim.fn.feedkeys("d0")
+                vim.fn.feedkeys("i")
+              end,
+              ["<a-d>"] = function(...)
+                return require("telescope.actions").cycle_history_next(...)
+              end,
+              ["<a-u>"] = function(...)
+                return require("telescope.actions").cycle_history_prev(...)
+              end,
+            },
           },
         },
-      },
-    },
+      }
+    end,
     config = function(_, opts)
       local telescope = require("telescope")
       telescope.setup(opts)

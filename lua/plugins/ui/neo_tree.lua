@@ -1,6 +1,15 @@
 local lazy_utils = require("lazyvim.util")
 local custom_utils = require("utils.init")
 
+local function context_dir(state)
+  -- return the directory of the current neo-tree node
+  local node = state.tree:get_node()
+  if node.type == "directory" then
+    return node.path
+  end
+  return node.path:gsub("/[^/]*$", "") -- go up one level
+end
+
 local function splitString(inputStr, sep)
   if sep == nil then
     sep = "%s"
@@ -184,6 +193,7 @@ return {
           -- statusline = true,
         },
         window = {
+          position = "float",
           mappings = {
             ["<space>"] = false,
             ["gY"] = "get_absolute_path",
@@ -197,6 +207,76 @@ return {
             ["h"] = "close_node",
             ["z"] = "",
             ["Y"] = "copy_name",
+
+            -- paste from the system clipboard
+            ["g;p"] = {
+              function(state)
+                local dest_dir = context_dir(state)
+                local files = vim.split(vim.fn.getreg("+"), "\n")
+                for _, file in ipairs(files) do
+                  local filename = file:gsub("^.*/", "")
+                  local dest = dest_dir .. "/" .. filename
+                  -- run `git add` afterwards if the file will not be overwriten and `.git` dir found in CWD
+                  local git_add = vim.fn.filereadable(file) == 1
+                    and vim.fn.filereadable(dest) == 0
+                    and vim.fn.isdirectory(".git") == 1
+
+                  if vim.fn.isdirectory(file) == 1 or vim.fn.filereadable(file) == 1 then
+                    vim.fn.jobstart({ "cp", "-r", file, dest_dir }, {
+                      detach = true,
+                      on_exit = function()
+                        vim.notify("Paste " .. vim.fn.shellescape(filename), vim.log.levels.INFO, {
+                          title = "neo-tree",
+                          timeout = 500,
+                        })
+                        -- if file is not in the ignored path and not overwriten, then `git add`
+                        if git_add then
+                          vim.fn.jobstart({ "git", "add", dest }, {
+                            on_exit = function()
+                              state.commands["refresh"](state)
+                            end,
+                          })
+                        else
+                          state.commands["refresh"](state)
+                        end
+                      end,
+                      on_stderr = function(_, data)
+                        if data[1] ~= "" then
+                          vim.notify(data[1], vim.log.levels.ERROR)
+                        end
+                      end,
+                    })
+                  end
+                end
+              end,
+              desc = "paste from clipboard",
+              nowait = true,
+            },
+            -- open in Spectre to replace here
+            ["<c-r>"] = {
+              function(state)
+                local node = state.tree:get_node()
+                if node.type == "directory" then
+                  require("spectre").open({
+                    cwd = node.path,
+                    is_close = true, -- close an exists instance of spectre and open new
+                    is_insert_mode = false,
+                    path = "",
+                  })
+                else
+                  require("spectre").open({
+                    cwd = context_dir(state),
+                    is_close = true, -- close an exists instance of spectre and open new
+                    is_insert_mode = false,
+                    path = node.path:match("^.+/(.+)$"),
+                  })
+                end
+                -- close neo-tree
+                vim.cmd("Neotree close")
+              end,
+              desc = "replace here",
+              nowait = true,
+            },
           },
         },
       }
