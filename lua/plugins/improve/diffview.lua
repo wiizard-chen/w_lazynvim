@@ -15,7 +15,7 @@ return {
       },
     },
     keys = {
-      { "<leader>gl", ":DiffviewFileHistory %<CR>", desc = "open current file history" },
+      { "<leader>gl", ":DiffviewFileHistory % --base=LOCAL <CR>", desc = "open current file history" },
       { "<leader>go", ":DiffviewOpen<CR>", desc = "open current project" },
       { "<leader>gd", ":tabclose<CR>", desc = "close current project" },
     },

@@ -193,7 +193,7 @@ return {
           -- statusline = true,
         },
         window = {
-          position = "float",
+          position = "right",
           mappings = {
             ["<space>"] = false,
             ["gY"] = "get_absolute_path",
@@ -276,6 +276,14 @@ return {
               end,
               desc = "replace here",
               nowait = true,
+            },
+            ["<c-o>"] = {
+              function(state)
+                local node = state.tree:get_node()
+                local absoulte_path = node._id
+                _cmd = "open -R " .. absoulte_path
+                vim.fn.jobstart(_cmd)
+              end,
             },
           },
         },
