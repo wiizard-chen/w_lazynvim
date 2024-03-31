@@ -193,6 +193,7 @@ return {
           -- statusline = true,
         },
         window = {
+          -- position = "right",
           position = "right",
           mappings = {
             ["<space>"] = false,
