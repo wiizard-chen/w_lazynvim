@@ -129,7 +129,7 @@ return {
         "<leader>fe",
         function()
           -- require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd(), reveal = true })
         end,
         -- desc = "Explorer NeoTree (root dir)",
         desc = "Explorer NeoTree (cwd)",
@@ -181,20 +181,23 @@ return {
       return {
         filesystem = {
           bind_to_cwd = false,
-          follow_current_file = { enabled = true },
+          follow_current_file = {
+            enabled = true,
+          },
           commands = global_commands,
         },
         buffers = { commands = global_commands },
         git_status = { commands = global_commands },
         -- diagnostics = { commands = global_commands },
-        source_selector = {
-          winbar = false,
-          -- content_layout = "center",
-          -- statusline = true,
-        },
+        -- source_selector = {
+        --   -- winbar = false,
+        --   -- content_layout = "center",
+        --   -- statusline = true,
+        -- },
         window = {
+          position = "float",
+          -- position = "left",
           -- position = "right",
-          position = "right",
           mappings = {
             ["<space>"] = false,
             ["gY"] = "get_absolute_path",
