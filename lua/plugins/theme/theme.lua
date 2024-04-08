@@ -39,8 +39,10 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "rose-pine",
-      colorscheme = "onedark",
+      colorscheme = "rose-pine",
+      -- colorscheme = "rose-pine-dawn",
+      -- colorscheme = "onedark",
+      -- colorscheme = "catppuccin",
     },
   },
 }
