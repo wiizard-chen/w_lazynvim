@@ -1,4 +1,5 @@
 return {
+  -- disabled
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)

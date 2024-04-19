@@ -1,7 +1,7 @@
 return {
-  {
-    "windwp/nvim-ts-autotag",
-  },
+  -- {
+  --   "windwp/nvim-ts-autotag",
+  -- },
   -- {
   --   "jose-elias-alvarez/typescript.nvim",
   --   config = function()

@@ -25,19 +25,5 @@ return {
       keys[#keys + 1] = { "]w", false, diagnostic_goto(true, "WARN"), desc = "Next Warning" }
       keys[#keys + 1] = { "[w", false, diagnostic_goto(false, "WARN"), desc = "Prev Warning" }
     end,
-    -- opts = {
-    --   servers = { eslint = {} },
-    --   setup = {
-    --     eslint = function()
-    --       require("lazyvim.util").on_attach(function(client)
-    --         if client.name == "eslint" then
-    --           client.server_capabilities.documentFormattingProvider = true
-    --         elseif client.name == "tsserver" then
-    --           client.server_capabilities.documentFormattingProvider = false
-    --         end
-    --       end)
-    --     end,
-    --   },
-    -- },
   },
 }

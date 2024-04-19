@@ -67,14 +67,15 @@ map("n", "<esc>", function()
 end, { desc = "Escape and clear hlsearch and auto save" })
 
 local function delayed_function()
-  vim.fn.feedkeys("gi")
+  -- vim.fn.feedkeys("gi")
   vim.fn.feedkeys(termcodes("<C-R>"))
   vim.fn.feedkeys("*")
 end
+
 -- 最完美的粘贴
 map("i", "<C-Y>", function()
-  local code = termcodes("<ESC>")
-  vim.fn.feedkeys(code)
+  -- local code = termcodes("<ESC>")
+  -- vim.fn.feedkeys(code)
   vim.defer_fn(delayed_function, 1)
 end, { desc = "paste from clipboard" })
 

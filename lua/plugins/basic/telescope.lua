@@ -85,9 +85,15 @@ return {
       end)
 
       map("n", ";f", function()
-        local func = lazy_utils.telescope("files", { cwd = false, no_ignore = false, hidden = true })
+        local func =
+          lazy_utils.telescope("grep_string", { cwd = false, no_ignore = false, hidden = true, use_regex = false })
         func()
-      end, { desc = "find files" })
+      end, { desc = "grep files" })
+
+      -- map("n", ";f", function()
+      --   local func = lazy_utils.telescope("files", { cwd = false, no_ignore = false, hidden = true })
+      --   func()
+      -- end, { desc = "find files" })
 
       map("n", ";e", function()
         local func = lazy_utils.telescope("resume")
