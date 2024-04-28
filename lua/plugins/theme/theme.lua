@@ -1,5 +1,6 @@
 return {
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "talha-akram/noctis.nvim" },
   { "rebelot/kanagawa.nvim", name = "kanagawa" },
   {
     "folke/tokyonight.nvim",
