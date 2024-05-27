@@ -120,4 +120,15 @@ https://www.lazyvim.org/
 | lsp                 | c-j        | next diagnostic error|n|
 | lsp                 | c-k        | previous diagnostic error|n|
 
+### How to use vue
+
+1. LazyExtra enable vue feature
+2. install vue css styled scss
+```shell
+TSInstall vue
+TSInstall css
+TSInstall styled
+TSInstall scss
+```
+
 
