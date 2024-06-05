@@ -3,6 +3,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     -- enabled = false,
+    opts = {
+      inlay_hints = { enabled = false },
+    },
     init = function()
       local diagnostic_goto = function(next, severity)
         local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev

@@ -16,4 +16,20 @@ return {
   --     end, { desc = "remove unused var and sort imports (typescript exclusive)" })
   --   end,
   -- },
+
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end,
+  },
+  {
+    "nvim-cmp",
+    dependencies = {
+      "saadparwaiz1/cmp_luasnip",
+    },
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "supermaven" })
+    end,
+  },
 }
