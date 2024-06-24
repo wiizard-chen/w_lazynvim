@@ -19,10 +19,10 @@ return {
                 return require("trouble.providers.telescope").open_with_trouble(...)
               end,
               ["<a-i>"] = function()
-                lazy_utils.telescope("find_files", { no_ignore = true })()
+                lazy_utils.pick("find_files", { no_ignore = true })()
               end,
               ["<a-h>"] = function()
-                lazy_utils.telescope("find_files", { hidden = true })()
+                lazy_utils.pick("find_files", { hidden = true })()
               end,
               -- ["<C-d>"] = function(...)
               --   return require("telescope.actions").cycle_history_next(...)
@@ -68,7 +68,7 @@ return {
           return
         end
 
-        local func = lazy_utils.telescope("grep_string", {
+        local func = lazy_utils.pick("grep_string", {
           cwd = false,
           use_regex = false,
           -- grep_open_files = false,
@@ -86,7 +86,7 @@ return {
 
       map("n", ";f", function()
         local func =
-          lazy_utils.telescope("grep_string", { cwd = false, no_ignore = false, hidden = true, use_regex = false })
+          lazy_utils.pick("grep_string", { cwd = false, no_ignore = false, hidden = true, use_regex = false })
         func()
       end, { desc = "grep files" })
 
@@ -96,7 +96,7 @@ return {
       -- end, { desc = "find files" })
 
       map("n", ";e", function()
-        local func = lazy_utils.telescope("resume")
+        local func = lazy_utils.pick("resume")
         func()
       end, { desc = "telescope resume" })
 
