@@ -30,7 +30,7 @@ local function start_telescope(telescope_mode, abspath, is_folder)
       return
     end
 
-    local func = lazy_utils.telescope("grep_string", {
+    local func = lazy_utils.pick("grep_string", {
       cwd = basedir,
       use_regex = false,
       -- grep_open_files = false,
@@ -49,7 +49,7 @@ local function start_telescope(telescope_mode, abspath, is_folder)
   end
 
   if telescope_mode == "find_files" then
-    local func = lazy_utils.telescope("files", {
+    local func = lazy_utils.pick("files", {
       cwd = basedir,
       no_ignore = false,
       hidden = true,

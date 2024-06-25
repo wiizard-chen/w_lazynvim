@@ -2,8 +2,22 @@ local map = require("utils.init").map
 local termcodes = require("utils.init").termcodes
 local vimcmd = require("utils.init").vimcmd
 
+local function open_current_buffer_in_new_tab()
+  local current_buf = vim.api.nvim_get_current_buf()
+  vim.cmd("tabnew")
+  vim.api.nvim_set_current_buf(current_buf)
+end
+
+local function has_new_tab()
+  return #vim.api.nvim_list_tabpages() > 1
+end
+
+local function paste_function()
+  vim.fn.feedkeys(termcodes("<C-R>"))
+  vim.fn.feedkeys("*")
+end
+
 map("n", ";;", ";", { desc = "fix ;" })
--- 方便常用的快捷键
 map("n", "gw", "*zz")
 map("x", "gw", "*zz")
 
@@ -19,7 +33,6 @@ map("n", "s=", "<C-w>=", { desc = "Resize each window" })
 map("n", "sc", function()
   -- 获取当前标签页的所有窗口
   local tabpage = vim.api.nvim_get_current_tabpage()
-
   local tabs = vim.fn.gettabinfo(tabpage)
   if #tabs < 1 then
     return
@@ -30,7 +43,7 @@ map("n", "sc", function()
   if #windows == 1 then
     vimcmd(delete_cmd)
   else
-    local success = pcall(vim.api.nvim_exec, "close", true)
+    local success = pcall(vim.api.nvim_exec2, "close", true)
     if not success then
       vimcmd(delete_cmd)
     end
@@ -40,49 +53,60 @@ map("n", "so", "<C-w>o", { desc = "Close other window" })
 map("n", "sw", "<c-w><c-w>", { desc = "switch float window" })
 
 -- tabs extra keymap
-map("n", "sn", "<cmd>tabnext<cr>", { desc = "next window" })
-map("n", "sp", "<cmd>tabprevious<cr>", { desc = "pre window" })
+map("n", "sn", function()
+  if has_new_tab() then
+    vim.cmd("tabnext")
+  else
+    open_current_buffer_in_new_tab()
+  end
+end, { desc = "next window" })
+map("n", "sp", function()
+  if has_new_tab() then
+    vim.cmd("tabprevious")
+  else
+    open_current_buffer_in_new_tab()
+  end
+end, { desc = "pre window" })
+map("n", "sd", "<cmd>tabclose<cr>", { desc = "close window" })
+map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 map("n", "<leader>sn", function()
   local cursor = vim.fn.line(".")
   vimcmd("tabnew %")
   vimcmd(tostring(cursor))
 end, { desc = "new tab with current buffer" })
 map("n", "<leader>sO", ":tabonly<CR>", { desc = "close other tab" })
-map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 
--- custom liked keymap
+-- custom  keymap
 map("n", "<leader>fs", ":wa!<CR>", { desc = "save all buffer" })
 map("n", "<leader>fl", ":put =execute('messages')<CR>", { desc = "show messages" })
 map("n", "<esc>", function()
   vimcmd("noh")
   -- 获取当前 buffer 的信息
-  local buftype = vim.api.nvim_buf_get_option(0, "buftype")
-  local readonly = vim.api.nvim_buf_get_option(0, "readonly")
+  local buftype = vim.api.nvim_get_option_value("buftype", {})
+  local readonly = vim.api.nvim_get_option_value("readonly", {})
+
+  print(buftype, readonly)
+
   -- 判断是否可以保存
   if buftype == "" and not readonly then
+    print("save", vim.bo.modified)
     if vim.bo.modified then
-      pcall(vim.api.nvim_exec, "w", true)
+      -- pcall(vim.api.nvim_exec2, "w", true)
+      vim.cmd("w")
     end
   end
 end, { desc = "Escape and clear hlsearch and auto save" })
-
-local function delayed_function()
-  -- vim.fn.feedkeys("gi")
-  vim.fn.feedkeys(termcodes("<C-R>"))
-  vim.fn.feedkeys("*")
-end
 
 -- 最完美的粘贴
 map("i", "<C-Y>", function()
   -- local code = termcodes("<ESC>")
   -- vim.fn.feedkeys(code)
-  vim.defer_fn(delayed_function, 1)
+  vim.defer_fn(paste_function, 1)
 end, { desc = "paste from clipboard" })
 
 -- 增强命令行的模式
 map("c", "<C-Y>", function()
-  vim.fn.feedkeys(termcodes("<C-R>"))
-  vim.fn.feedkeys("*")
+  paste_function()
 end, { desc = "paste from clipboard in cmd" })
 
 map("c", "<C-A>", function()
