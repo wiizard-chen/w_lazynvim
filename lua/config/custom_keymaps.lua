@@ -43,7 +43,7 @@ map("n", "sc", function()
   if #windows == 1 then
     vimcmd(delete_cmd)
   else
-    local success = pcall(vim.api.nvim_exec2, "close", true)
+    local success = pcall(vim.cmd, "close", true)
     if not success then
       vimcmd(delete_cmd)
     end
@@ -85,11 +85,8 @@ map("n", "<esc>", function()
   local buftype = vim.api.nvim_get_option_value("buftype", {})
   local readonly = vim.api.nvim_get_option_value("readonly", {})
 
-  print(buftype, readonly)
-
   -- 判断是否可以保存
   if buftype == "" and not readonly then
-    print("save", vim.bo.modified)
     if vim.bo.modified then
       -- pcall(vim.api.nvim_exec2, "w", true)
       vim.cmd("w")

@@ -15,15 +15,15 @@ return {
           selection_caret = " ",
           mappings = {
             n = {
-              ["<a-t>"] = function(...)
-                return require("trouble.providers.telescope").open_with_trouble(...)
-              end,
-              ["<a-i>"] = function()
-                lazy_utils.pick("find_files", { no_ignore = true })()
-              end,
-              ["<a-h>"] = function()
-                lazy_utils.pick("find_files", { hidden = true })()
-              end,
+              -- ["<a-t>"] = function(...)
+              --   return require("trouble.providers.telescope").open_with_trouble(...)
+              -- end,
+              -- ["<a-i>"] = function()
+              --   lazy_utils.pick("find_files", { no_ignore = true })()
+              -- end,
+              -- ["<a-h>"] = function()
+              --   lazy_utils.pick("find_files", { hidden = true })()
+              -- end,
               -- ["<C-d>"] = function(...)
               --   return require("telescope.actions").cycle_history_next(...)
               -- end,
@@ -32,25 +32,26 @@ return {
               -- end,
             },
             i = {
-              ["<C-o>"] = require("telescope.actions.generate").which_key({
-                name_width = 20, -- typically leads to smaller floats
-                max_height = 0.5, -- increase potential maximum height
-                separator = " > ", -- change sep between mode, keybind, and name
-                close_with_action = false, -- do not close float on action
-              }),
+              ["<ESC>"] = require("telescope.actions").close,
+              -- ["<C-o>"] = require("telescope.actions.generate").which_key({
+              --   name_width = 20, -- typically leads to smaller floats
+              --   max_height = 0.5, -- increase potential maximum height
+              --   separator = " > ", -- change sep between mode, keybind, and name
+              --   close_with_action = false, -- do not close float on action
+              -- }),
               ["<C-u>"] = function()
                 -- 删除全部输入
-                local code = termcodes("<ESC>")
+                local code = termcodes("<C-o>")
                 vim.fn.feedkeys(code)
                 vim.fn.feedkeys("d0")
-                vim.fn.feedkeys("i")
+                -- vim.fn.feedkeys("i")
               end,
-              ["<a-d>"] = function(...)
-                return require("telescope.actions").cycle_history_next(...)
-              end,
-              ["<a-u>"] = function(...)
-                return require("telescope.actions").cycle_history_prev(...)
-              end,
+              -- ["<a-d>"] = function(...)
+              --   return require("telescope.actions").cycle_history_next(...)
+              -- end,
+              -- ["<a-u>"] = function(...)
+              --   return require("telescope.actions").cycle_history_prev(...)
+              -- end,
             },
           },
         },
