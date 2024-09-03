@@ -195,8 +195,8 @@ return {
         --   -- statusline = true,
         -- },
         window = {
-          position = "float",
-          -- position = "left",
+          -- position = "float",
+          position = "left",
           -- position = "right",
           mappings = {
             ["<space>"] = false,

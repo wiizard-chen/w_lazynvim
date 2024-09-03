@@ -1,3 +1,4 @@
+-- custom telescope
 local lazy_utils = require("lazyvim.util")
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
