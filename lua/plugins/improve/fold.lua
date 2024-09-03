@@ -16,7 +16,7 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
-    enabled = true,
+    enabled = false,
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "nvim-treesitter/nvim-treesitter" },
