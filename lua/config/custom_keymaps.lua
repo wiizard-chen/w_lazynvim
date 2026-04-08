@@ -21,53 +21,55 @@ map("n", ";;", ";", { desc = "fix ;" })
 map("n", "gw", "*zz")
 map("x", "gw", "*zz")
 
--- extra important key about spliting screen
-map("n", "s", "")
-map("n", "ss", ":split<Return>", { desc = "Horizontal split screen" })
-map("n", "sv", ":vsplit<Return>", { desc = "Vertical split screen" })
-map("n", "sh", "<C-w>h", { desc = "Go to left window" })
-map("n", "sj", "<C-w>j", { desc = "Go to lower window" })
-map("n", "sk", "<C-w>k", { desc = "Go to upper window" })
-map("n", "sl", "<C-w>l", { desc = "Go to right window" })
-map("n", "s=", "<C-w>=", { desc = "Resize each window" })
-map("n", "sc", function()
-  -- 获取当前标签页的所有窗口
-  local tabpage = vim.api.nvim_get_current_tabpage()
-  local tabs = vim.fn.gettabinfo(tabpage)
-  if #tabs < 1 then
-    return
-  end
-  local windows = tabs[1].windows
-  local delete_cmd = "BufferClose"
-  -- 判断窗口数量
-  if #windows == 1 then
-    vimcmd(delete_cmd)
-  else
-    local success = pcall(vim.cmd, "close", true)
-    if not success then
-      vimcmd(delete_cmd)
-    end
-  end
-end, { desc = "Close window" })
-map("n", "so", "<C-w>o", { desc = "Close other window" })
-map("n", "sw", "<c-w><c-w>", { desc = "switch float window" })
+-- -- extra important key about spliting screen
+-- map("n", "s", "")
+-- map("n", "ss", ":split<Return>", { desc = "Horizontal split screen" })
+-- map("n", "sv", ":vsplit<Return>", { desc = "Vertical split screen" })
+-- map("n", "sh", "<C-w>h", { desc = "Go to left window" })
+-- map("n", "sj", "<C-w>j", { desc = "Go to lower window" })
+-- map("n", "sk", "<C-w>k", { desc = "Go to upper window" })
+-- map("n", "sl", "<C-w>l", { desc = "Go to right window" })
+-- map("n", "s=", "<C-w>=", { desc = "Resize each window" })
+-- map("n", "sc", function()
+--   -- 获取当前标签页的所有窗口
+--   local tabpage = vim.api.nvim_get_current_tabpage()
+--   local tabs = vim.fn.gettabinfo(tabpage)
+--   if #tabs < 1 then
+--     return
+--   end
+--   local windows = tabs[1].windows
+--   local delete_cmd = "BufferClose"
+--   -- 判断窗口数量
+--   if #windows == 1 then
+--     vimcmd(delete_cmd)
+--   else
+--     local success = pcall(vim.cmd, "close", true)
+--     if not success then
+--       vimcmd(delete_cmd)
+--     end
+--   end
+-- end, { desc = "Close window" })
+-- map("n", "so", "<C-w>o", { desc = "Close other window" })
+-- map("n", "sw", "<c-w><c-w>", { desc = "switch float window" })
 
--- tabs extra keymap
-map("n", "sn", function()
-  if has_new_tab() then
-    vim.cmd("tabnext")
-  else
-    open_current_buffer_in_new_tab()
-  end
-end, { desc = "next window" })
-map("n", "sp", function()
-  if has_new_tab() then
-    vim.cmd("tabprevious")
-  else
-    open_current_buffer_in_new_tab()
-  end
-end, { desc = "pre window" })
-map("n", "sd", "<cmd>tabclose<cr>", { desc = "close window" })
+-- -- tabs extra keymap
+-- map("n", "sn", function()
+--   if has_new_tab() then
+--     vim.cmd("tabnext")
+--   else
+--     open_current_buffer_in_new_tab()
+--   end
+-- end, { desc = "next window" })
+-- map("n", "sp", function()
+--   if has_new_tab() then
+--     vim.cmd("tabprevious")
+--   else
+--     open_current_buffer_in_new_tab()
+--   end
+-- end, { desc = "pre window" })
+-- map("n", "sd", "<cmd>tabclose<cr>", { desc = "close window" })
+
+
 map("n", "<leader>n", "<cmd>tabnew<cr>", { desc = "new tab" })
 map("n", "<leader>sn", function()
   local cursor = vim.fn.line(".")

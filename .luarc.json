@@ -3,5 +3,8 @@
         "assign-type-mismatch",
         "param-type-mismatch",
         "inject-field"
+    ],
+    "diagnostics.globals": [
+        "vim"
     ]
 }
