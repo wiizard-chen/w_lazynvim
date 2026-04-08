@@ -54,12 +54,5 @@ return {
         pinned = { button = "󰐃", filename = true, separator = { right = "" } },
       },
     },
-    -- config = function(_, opts)
-    --   require("barbar").setup(opts)
-    --   -- local hl = require("bufferline.utils").hl
-    --   -- local fg_current = hl.fg_or_default({ "Normal" }, "#ff00ff", 255)
-    --   -- local bg_current = hl.bg_or_default({ "Normal" }, "none")
-    --   -- hl.set("BufferDefaultCurrent", bg_current, fg_current)
-    -- end,
   },
 }

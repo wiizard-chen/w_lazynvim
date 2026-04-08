@@ -16,30 +16,10 @@ return {
           selection_caret = " ",
           mappings = {
             n = {
-              -- ["<a-t>"] = function(...)
-              --   return require("trouble.providers.telescope").open_with_trouble(...)
-              -- end,
-              -- ["<a-i>"] = function()
-              --   lazy_utils.pick("find_files", { no_ignore = true })()
-              -- end,
-              -- ["<a-h>"] = function()
-              --   lazy_utils.pick("find_files", { hidden = true })()
-              -- end,
-              -- ["<C-d>"] = function(...)
-              --   return require("telescope.actions").cycle_history_next(...)
-              -- end,
-              -- ["<C-u>"] = function(...)
-              --   return require("telescope.actions").cycle_history_prev(...)
-              -- end,
+              ["<ESC>"] = require("telescope.actions").close,
             },
             i = {
               ["<ESC>"] = require("telescope.actions").close,
-              -- ["<C-o>"] = require("telescope.actions.generate").which_key({
-              --   name_width = 20, -- typically leads to smaller floats
-              --   max_height = 0.5, -- increase potential maximum height
-              --   separator = " > ", -- change sep between mode, keybind, and name
-              --   close_with_action = false, -- do not close float on action
-              -- }),
               ["<C-u>"] = function()
                 -- 删除全部输入
                 local code = termcodes("<C-o>")
@@ -47,12 +27,6 @@ return {
                 vim.fn.feedkeys("d0")
                 -- vim.fn.feedkeys("i")
               end,
-              -- ["<a-d>"] = function(...)
-              --   return require("telescope.actions").cycle_history_next(...)
-              -- end,
-              -- ["<a-u>"] = function(...)
-              --   return require("telescope.actions").cycle_history_prev(...)
-              -- end,
             },
           },
         },
@@ -91,11 +65,6 @@ return {
           lazy_utils.pick("grep_string", { cwd = false, no_ignore = false, hidden = true, use_regex = false })
         func()
       end, { desc = "grep files" })
-
-      -- map("n", ";f", function()
-      --   local func = lazy_utils.telescope("files", { cwd = false, no_ignore = false, hidden = true })
-      --   func()
-      -- end, { desc = "find files" })
 
       map("n", ";e", function()
         local func = lazy_utils.pick("resume")

@@ -1,11 +1,15 @@
-local opt = {
-  noremap = true,
-  silent = true,
-}
+local M = {}
+
+-- platform clipboard setup
+local has = vim.fn.has
+if has("macunix") then
+  vim.opt.clipboard:append({ "unnamedplus" })
+elseif has("win32") then
+  vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+end
 
 local vimcmd = vim.cmd
 local clock = os.clock
-local M = {}
 
 function M.sleep(n) -- seconds
   local t0 = clock()

@@ -19,9 +19,6 @@ map("i", "<C-k>", '<space><Esc>"_d$a', { desc = "delete the forward of line" })
 map("v", "<C-A>", "^", { desc = "jump to the start of line" })
 map("v", "<C-E>", "$", { desc = "jump to the end of line" })
 
--- something wrong happen
--- map("0", "^", { desc = "jump to the start of line" })
-
 -- clear key
 map("n", "<C-h>", "", { desc = "" })
 map("n", "<C-j>", "", { desc = "" })
@@ -55,9 +52,6 @@ map("n", ">", ">>")
 -- 上下移动选中文本
 map("v", "J", ":move '>+1<CR>gv-gv")
 map("v", "K", ":move '<-2<CR>gv-gv")
--- map("n", "J", "mzJ`z")
--- map("n", "<C-d>", "<C-d>zz")
--- map("n", "<C-u>", "<C-u>zz")
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 

@@ -38,14 +38,6 @@ local function start_telescope(telescope_mode, abspath, is_folder)
     })
 
     func()
-
-    -- require("telescope.builtin").grep_string({
-    --   cwd = basedir,
-    --   use_regex = false,
-    --   grep_open_files = false,
-    --   search = vim.fn.input("Grep > "),
-    -- })
-    -- return
   end
 
   if telescope_mode == "find_files" then
@@ -55,9 +47,6 @@ local function start_telescope(telescope_mode, abspath, is_folder)
       hidden = true,
     })
     func()
-    -- require("telescope.builtin")[telescope_mode]({
-    --   cwd = basedir,
-    -- })
   end
 end
 
@@ -74,13 +63,7 @@ local function get_relative_path(state)
   local replace = custom_utils.replace
   local file_path = node._id
   local root_path = lazy_utils.root.get() .. "/"
-  -- local relativePath = filePath:gsub(rootPath, "")
   local relative_path = replace(file_path, root_path, "")
-  print(root_path)
-  print("**************")
-  print(file_path)
-  print("**************")
-  print(relative_path)
   vim.fn.setreg("+", relative_path)
   vim.fn.setreg('"', relative_path)
   vim.fn.setreg("*", relative_path)
@@ -128,10 +111,8 @@ return {
       {
         "<leader>fe",
         function()
-          -- require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
           require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd(), reveal = true })
         end,
-        -- desc = "Explorer NeoTree (root dir)",
         desc = "Explorer NeoTree (cwd)",
       },
       {
@@ -188,16 +169,8 @@ return {
         },
         buffers = { commands = global_commands },
         git_status = { commands = global_commands },
-        -- diagnostics = { commands = global_commands },
-        -- source_selector = {
-        --   -- winbar = false,
-        --   -- content_layout = "center",
-        --   -- statusline = true,
-        -- },
         window = {
-          -- position = "float",
           position = "left",
-          -- position = "right",
           mappings = {
             ["<space>"] = false,
             ["gY"] = "get_absolute_path",

@@ -7,8 +7,6 @@ local Path = require("plenary.path")
 local flatten = vim.tbl_flatten
 local filter = vim.tbl_filter
 
--- local pickers = {}
-
 local opts_contain_invert = function(args)
   local invert = false
   local files_with_matches = false
@@ -81,33 +79,6 @@ local get_open_filelist = function(grep_open_files, cwd)
   return filelist
 end
 
-local tprint = function(tbl, indent)
-  if not indent then
-    indent = 0
-  end
-  local toprint = string.rep(" ", indent) .. "{\r\n"
-  indent = indent + 2
-  for k, v in pairs(tbl) do
-    toprint = toprint .. string.rep(" ", indent)
-    if type(k) == "number" then
-      toprint = toprint .. "[" .. k .. "] = "
-    elseif type(k) == "string" then
-      toprint = toprint .. k .. "= "
-    end
-    if type(v) == "number" then
-      toprint = toprint .. v .. ",\r\n"
-    elseif type(v) == "string" then
-      toprint = toprint .. '"' .. v .. '",\r\n'
-    elseif type(v) == "table" then
-      toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
-    else
-      toprint = toprint .. '"' .. tostring(v) .. '",\r\n'
-    end
-  end
-  toprint = toprint .. string.rep(" ", indent - 2) .. "}"
-  return toprint
-end
-
 pickers.grep_in_staged = function(opts)
   opts.cwd = opts.cwd and vim.fn.expand(opts.cwd) or vim.loop.cwd()
   local word = vim.F.if_nil(opts.search, vim.fn.expand("<cword>"))
@@ -123,8 +94,6 @@ pickers.grep_in_staged = function(opts)
   })
 
   opts.__inverted, opts.__matches = opts_contain_invert(args)
-
-  tprint(args)
 
   if opts.grep_open_files then
     for _, file in ipairs(get_open_filelist(opts.grep_open_files, opts.cwd)) do

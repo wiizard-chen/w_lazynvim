@@ -1,9 +1,6 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
---
---
---
 
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
@@ -18,8 +15,5 @@ vim.o.foldenable = true
 vim.wo.relativenumber = false
 
 -- fillchars
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.fillchars = [[eob: ,fold: ,foldopen: ,foldsep: ,foldclose: ]]
 vim.opt.formatoptions:remove({ "c", "r", "o" })
-
--- vim.opt.formatoptions = "tcqj"
--- vim.o.relativenumber = false
